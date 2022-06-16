@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { questionsReducer } from './features/questions/state/questions.reducer';
+import { ErrorHandlingService } from './shared/services/error-handling/error-handling.service';
 
 const imports = [
   BrowserModule,
@@ -66,7 +67,7 @@ const imports = [
 @NgModule({
   declarations: [AppComponent],
   imports: [...imports, BrowserAnimationsModule, MatDialogModule],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: ErrorHandlingService }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

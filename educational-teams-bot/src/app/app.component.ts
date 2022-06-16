@@ -7,6 +7,7 @@ import {
   InteractionStatus,
 } from '@azure/msal-browser';
 import { filter, Subject } from 'rxjs';
+import { LoggingService } from './shared/services/logging/logging.service';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,7 @@ export class AppComponent {
   setStatusDrawer(value: boolean): void {
     this.drawerOpen = value;
   }
+
   ngOnDestroy(): void {
     this._destroying$.next();
     this._destroying$.complete();
