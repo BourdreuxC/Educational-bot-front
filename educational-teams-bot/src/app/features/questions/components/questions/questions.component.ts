@@ -25,7 +25,7 @@ export class QuestionsComponent implements OnInit {
     private service: QuestionsService,
     private store: Store<QuestionsState>
   ) {
-    this.store.pipe(select(selectQuestions)).subscribe((q) => {
+    this.store.pipe(select(selectQuestions)).subscribe((q: Question[]) => {
       this.questions = q;
     });
   }
@@ -41,8 +41,8 @@ export class QuestionsComponent implements OnInit {
    * Get the questions thanks to the service.
    */
   getQuestions() {
-    this.service.getQuestions().subscribe((questions: Array<Question>) => {
-      this.store.dispatch(addQuestions(questions));
+    this.service.getQuestions().subscribe((result: any) => {
+      this.store.dispatch(addQuestions(result.items as Question[]));
     });
   }
 

@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/components/dashboard/dashboard.c
 import { SpeakersComponent } from './speakers/components/speakers/speakers.component';
 import { QuestionsComponent } from './questions/components/questions/questions.component';
 import { TagsComponent } from './tags/components/tags/tags.component';
+import { ReactionsComponent } from './reactions/components/reactions/reactions.component';
 
 const routes: Routes = [
   {
@@ -16,11 +17,15 @@ const routes: Routes = [
   },
   {
     path: 'questions',
-    component: QuestionsComponent
+    component: QuestionsComponent,
   },
   {
     path: 'tags',
     component: TagsComponent,
+  },
+  {
+    path: 'reactions',
+    component: ReactionsComponent,
   },
 ];
 

@@ -20,6 +20,10 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { questionsReducer } from './features/questions/state/questions.reducer';
 import { ErrorHandlingService } from './shared/services/error-handling/error-handling.service';
+import { ReactionsModule } from './features/reactions/reactions.module';
+import { reactionsReducer } from './features/reactions/state/reactions.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ReactionsEffects } from './features/reactions/state/reactions.effects';
 
 const imports = [
   BrowserModule,
@@ -53,7 +57,7 @@ const imports = [
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
         [
-          `${environment.apiEndpoint}/api/`,
+          `${environment.apiEndpoint}/`,
           [`api://${environment.clientId}/access_as_user`],
         ],
         ['https://graph.microsoft.com', ['User.Read.All']],
@@ -61,12 +65,21 @@ const imports = [
     }
   ),
   FeaturesModule,
-  StoreModule.forRoot({ questions: questionsReducer }),
+  StoreModule.forRoot({
+    questions: questionsReducer,
+    reactions: reactionsReducer,
+  }),
+  EffectsModule.forRoot([ReactionsEffects]),
 ];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [...imports, BrowserAnimationsModule, MatDialogModule],
+  imports: [
+    ...imports,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    ReactionsModule,
+  ],
   providers: [{ provide: ErrorHandler, useClass: ErrorHandlingService }],
   bootstrap: [AppComponent],
 })
