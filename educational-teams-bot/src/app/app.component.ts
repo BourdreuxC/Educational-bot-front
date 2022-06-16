@@ -44,6 +44,7 @@ export class AppComponent {
   setStatusDrawer(value: boolean): void {
     this.drawerOpen = value;
   }
+
   ngOnDestroy(): void {
     this._destroying$.next();
     this._destroying$.complete();

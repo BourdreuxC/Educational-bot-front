@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpeakerItemComponent } from './speaker-item.component';
+import { AutoDeleteComponent } from './auto-delete.component';
 
-describe('SpeakerItemComponent', () => {
-  let component: SpeakerItemComponent;
-  let fixture: ComponentFixture<SpeakerItemComponent>;
+describe('AutoDeleteComponent', () => {
+  let component: AutoDeleteComponent;
+  let fixture: ComponentFixture<AutoDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpeakerItemComponent ]
+      declarations: [ AutoDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SpeakerItemComponent);
+    fixture = TestBed.createComponent(AutoDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

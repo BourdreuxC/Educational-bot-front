@@ -1,0 +1,18 @@
+<div *ngIf="objectList != undefined">
+  <div *ngFor="let object of objectList" class="tabled">
+    <table style="width: 100%" aria-label="auto table">
+      <th class="d-none"></th>
+      <tr>
+        {{
+          object
+        }}
+        {{
+          this.findElement(object)
+        }}
+      </tr>
+    </table>
+  </div>
+</div>
+<div *ngIf="objectList == undefined">
+  <div>Un problème est survenu durant le chargement des données</div>
+</div>

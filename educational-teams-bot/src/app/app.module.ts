@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,13 +13,18 @@ import { environment } from 'src/environments/environment';
 import { FeaturesModule } from './features/features.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { StoreModule } from '@ngrx/store';
+import { CommonModule } from '@angular/common';
+import { questionsReducer } from './features/questions/state/questions.reducer';
+import { ErrorHandlingService } from './shared/services/error-handling/error-handling.service';
 
 const imports = [
   BrowserModule,
   AppRoutingModule,
+  CommonModule,
   SharedModule,
   CoreModule,
   NgbModule,
@@ -27,7 +32,6 @@ const imports = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  
   MsalModule.forRoot(
     new PublicClientApplication({
       auth: {
@@ -42,9 +46,7 @@ const imports = [
     {
       interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       authRequest: {
-        scopes: [
-          'User.Read.All'
-        ],
+        scopes: ['User.Read.All'],
       },
     },
     {
@@ -59,12 +61,13 @@ const imports = [
     }
   ),
   FeaturesModule,
+  StoreModule.forRoot({ questions: questionsReducer }),
 ];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [...imports, BrowserAnimationsModule, MatDialogModule],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: ErrorHandlingService }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

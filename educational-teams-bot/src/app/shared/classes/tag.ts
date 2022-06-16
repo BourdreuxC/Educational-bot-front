@@ -1,13 +1,9 @@
 export class Tag {
-    id: string;
-    libelle: string;
+  id: string;
+  variants: string[];
 
-    constructor(id : string, libelle: string) {
-        this.id = id;
-        this.libelle = libelle;
-    }
-
-    list(){
-return ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-    }
+  constructor(id: string, variants: string[]) {
+    this.id = id;
+    this.variants = variants;
   }
+}
