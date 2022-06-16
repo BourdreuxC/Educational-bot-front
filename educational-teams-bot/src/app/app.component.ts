@@ -7,7 +7,6 @@ import {
   InteractionStatus,
 } from '@azure/msal-browser';
 import { filter, Subject } from 'rxjs';
-import { LoggingService } from './shared/services/logging/logging.service';
 
 @Component({
   selector: 'app-root',
