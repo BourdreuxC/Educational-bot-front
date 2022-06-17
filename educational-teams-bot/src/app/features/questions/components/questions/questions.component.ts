@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Pagination } from 'src/app/shared/classes/pagination';
 import { Question } from 'src/app/shared/classes/question';
 import { QuestionsService } from '../../services/questions.service';
 import { addQuestions } from '../../state/questions.actions';
@@ -41,8 +42,30 @@ export class QuestionsComponent implements OnInit {
    * Get the questions thanks to the service.
    */
   getQuestions() {
-    this.service.getQuestions().subscribe((result: any) => {
-      this.store.dispatch(addQuestions(result.items as Question[]));
+    this.service.getQuestions().subscribe((result: Pagination) => {
+      var pagination = new Pagination(
+        result.items,
+        result.pageIndex,
+        result.totalPages,
+        result.totalCount,
+        result.hasPreviousPage,
+        result.hasNextPage
+      );
+
+      var questions: Question[] = [];
+
+      pagination.items.forEach((element) => {
+        questions.push(
+          new Question(
+            element.id,
+            element.content,
+            element.tags,
+            element.answers
+          )
+        );
+      });
+
+      this.store.dispatch(addQuestions(questions));
     });
   }
 

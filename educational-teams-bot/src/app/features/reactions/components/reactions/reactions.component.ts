@@ -43,7 +43,15 @@ export class ReactionsComponent implements OnInit {
    */
   getReactions() {
     this.service.getReactions().subscribe((result: any) => {
-      this.store.dispatch(addReactions(result.items));
+      var reactions: Reaction[] = [];
+
+      result.items.forEach((element: Reaction) => {
+        reactions.push(
+          new Reaction(element.id, element.reactionId, element.value)
+        );
+      });
+
+      this.store.dispatch(addReactions(reactions));
     });
   }
 }

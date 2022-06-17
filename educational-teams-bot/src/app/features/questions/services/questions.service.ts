@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Pagination } from 'src/app/shared/classes/pagination';
 import { Question } from 'src/app/shared/classes/question';
 import { environment } from 'src/environments/environment';
 
@@ -25,8 +26,8 @@ export class QuestionsService {
    * Request the API to get the list of questions.
    * @returns An Observable containing an array of questions.
    */
-  getQuestions(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiBaseUrl}/questions`, {
+  getQuestions(): Observable<Pagination> {
+    return this.httpClient.get<Pagination>(`${this.apiBaseUrl}/questions`, {
       headers: { 'Content-Type': 'application/json' },
     });
   }
