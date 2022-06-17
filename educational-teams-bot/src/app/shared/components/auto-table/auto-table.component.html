@@ -3,8 +3,10 @@
         <table style="width:100%" aria-label="auto table"> <tr>
          <th *ngFor="let property of propertyOfObject(object)" class="border-right">
             <div *ngIf="tipe(object[property]) === 'array'">{{property | titlecase}}: {{object[property].length}}<span (click)="listModal(object[property], property)" class="icon"><em class="fa-solid fa-list"></em></span></div>
-            <div *ngIf="tipe(object[property]) != 'array' && property != 'id'" [innerHtml]="object[property]"></div>
+            <div *ngIf="object[property] === true"><i style="color: green;" class="fa-solid fa-circle-check fa-2x" aria-hidden="true"> </i></div>
+            <div *ngIf="object[property] === false"><i style="color: red;" class="fa-solid fa-circle-x fa-2x" aria-hidden="true"> </i></div>
+            <div *ngIf="tipe(object[property]) != 'array' && tipe(object[property]) != 'boolean' && property != 'id'" [innerHtml]="object[property]"></div>
          </th>
-         <th> <table aria-label="button table"><tr><th><span (click)="edit(object)" class="icon"><em class="fa-solid fa-pen-to-square"></em></span></th><th><span (click)="delete(object)" class="icon"><em class="fa-solid fa-trash"></em></span></th></tr></table></th></tr></table></div>
+         
+         <th> <table aria-label="button table" style="display: inline-flex;"><tr><th><span (click)="edit(object)" class="icon"><em class="fa-solid fa-pen-to-square"></em></span></th><th><span (click)="delete(object)" class="icon"><em class="fa-solid fa-trash"></em></span></th></tr></table></th></tr></table></div>
     </div>
-    

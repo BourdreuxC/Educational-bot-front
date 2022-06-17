@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { questionsReducer } from './features/questions/state/questions.reducer';
@@ -35,6 +36,7 @@ const imports = [
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatCheckboxModule,
   MatSelectModule,
   MsalModule.forRoot(
     new PublicClientApplication({

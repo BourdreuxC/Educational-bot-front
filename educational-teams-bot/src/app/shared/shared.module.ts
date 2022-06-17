@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { ClassesModule } from './classes/classes.module';
 import { AutoDeleteComponent } from './components/auto-delete/auto-delete.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const declarations = [
   PipeExamplePipe,
@@ -36,6 +37,7 @@ const declarations = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
