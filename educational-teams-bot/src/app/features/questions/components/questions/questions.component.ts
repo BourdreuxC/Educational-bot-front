@@ -68,18 +68,4 @@ export class QuestionsComponent implements OnInit {
       this.store.dispatch(addQuestions(questions));
     });
   }
-
-  /**
-   * Display edit modal.
-   */
-  edit() {
-    console.log("salut ça marche je suis l'edit");
-  }
-
-  /**
-   * Removes a question.
-   */
-  delete() {
-    console.log('salut ça marche je suis la destruction');
-  }
 }

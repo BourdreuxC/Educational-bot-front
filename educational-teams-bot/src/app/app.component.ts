@@ -31,7 +31,6 @@ export class AppComponent {
       .subscribe((result: EventMessage) => {
         const payload = result.payload as AuthenticationResult;
         this.authService.instance.setActiveAccount(payload.account);
-        console.log(this.authService.instance.getActiveAccount());
       });
 
     this.msalBroadcastService.inProgress$

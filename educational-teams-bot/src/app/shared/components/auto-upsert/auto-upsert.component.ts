@@ -1,18 +1,17 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AutoCrudService } from 'src/app/shared/services/auto-crud.service';
 import { AutoTableState } from '../../states/auto-table.reducer';
 import { selectObjects } from '../../states/auto-table.selector';
 import { select, Store } from '@ngrx/store';
-import { addObjects } from '../../states/auto-table.actions';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-auto-upsert',
   templateUrl: './auto-upsert.component.html',
   styleUrls: ['./auto-upsert.component.scss'],
 })
-export class AutoUpsertComponent implements OnInit {
+export class AutoUpsertComponent {
   myForm!: FormGroup;
   _object: any;
   children?: any;
@@ -63,7 +62,6 @@ export class AutoUpsertComponent implements OnInit {
     this.object = data['object'];
   }
 
-  ngOnInit(): void {}
   propertyOfObject(object: any) {
     return Object.keys(object);
   }
@@ -73,11 +71,10 @@ export class AutoUpsertComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this._object);
-
-    this.autoCrudService
-      .autoUpsert(this.myForm.value, this._object.constructor.name)
-      .subscribe((response) => {});
+    this.autoCrudService.autoUpsert(
+      this.myForm.value,
+      this._object.constructor.name
+    );
   }
 }
 interface ObjectProperties {
