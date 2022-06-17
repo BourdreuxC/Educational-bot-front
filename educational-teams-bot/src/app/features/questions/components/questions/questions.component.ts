@@ -42,7 +42,7 @@ export class QuestionsComponent implements OnInit {
    * Get the questions thanks to the service.
    */
   getQuestions() {
-    this.service.getQuestions().subscribe((result: Pagination) => {
+    this.service.getQuestions().subscribe((result: any) => {
       let pagination = new Pagination(
         result.items,
         result.pageIndex,
