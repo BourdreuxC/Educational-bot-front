@@ -1,9 +1,3 @@
-import { Answer } from './answer';
-import { Question } from './question';
-import { Reaction } from './reaction';
-import { Speaker } from './speaker';
-import { Tag } from './tag';
-
 export class Pagination {
   items: any[];
   pageIndex: number;

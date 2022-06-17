@@ -43,7 +43,7 @@ export class QuestionsComponent implements OnInit {
    */
   getQuestions() {
     this.service.getQuestions().subscribe((result: Pagination) => {
-      var pagination = new Pagination(
+      let pagination = new Pagination(
         result.items,
         result.pageIndex,
         result.totalPages,
@@ -52,7 +52,7 @@ export class QuestionsComponent implements OnInit {
         result.hasNextPage
       );
 
-      var questions: Question[] = [];
+      let questions: Question[] = [];
 
       pagination.items.forEach((element) => {
         questions.push(

@@ -43,7 +43,7 @@ export class ReactionsComponent implements OnInit {
    */
   getReactions() {
     this.service.getReactions().subscribe((result: any) => {
-      var reactions: Reaction[] = [];
+      let reactions: Reaction[] = [];
 
       result.items.forEach((element: Reaction) => {
         reactions.push(

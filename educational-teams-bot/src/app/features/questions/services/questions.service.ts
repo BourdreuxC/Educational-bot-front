@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/shared/classes/pagination';
-import { Question } from 'src/app/shared/classes/question';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
