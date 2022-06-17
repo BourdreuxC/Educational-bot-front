@@ -17,17 +17,16 @@ export class AutoTableComponent {
   constructor(public dialog: MatDialog) {}
 
   propertyOfObject(object: any) {
-    let keys = Object.keys(object)
-    keys.forEach((element, index) =>{
-      if(element == "id") {
+    let keys = Object.keys(object);
+    keys.forEach((element, index) => {
+      if (element == 'id') {
         keys.splice(index, 1);
       }
-    })
-    
-    
-    return keys
+    });
+
+    return keys;
   }
-  listModal(objects: any[], type:any) {
+  listModal(objects: any[], type: any) {
     let dialogRef = this.dialog.open(AutoListComponent, {
       data: { objectsList: objects, type: type },
     });
@@ -38,11 +37,9 @@ export class AutoTableComponent {
     });
   }
 
-  delete(object:any) {
-    
+  delete(object: any) {
     let dialogRef = this.dialog.open(AutoDeleteComponent, {
-      data: {object: object, }
-    }
-    );
+      data: { object: object },
+    });
   }
 }

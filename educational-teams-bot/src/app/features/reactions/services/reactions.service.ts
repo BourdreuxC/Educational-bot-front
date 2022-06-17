@@ -7,14 +7,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class QuestionsService {
+export class ReactionsService {
   /**
    * Base URL of the API.
    */
   private apiBaseUrl: string;
 
   /**
-   * Initializes a new instance of the QuestionService class.
+   * Initializes a new instance of the ReactionService class.
    * @param httpClient HttpClient to use in this service.
    */
   constructor(private httpClient: HttpClient) {
@@ -22,11 +22,11 @@ export class QuestionsService {
   }
 
   /**
-   * Request the API to get the list of questions.
-   * @returns An Observable containing an array of questions.
+   * Request the API to get the list of reactions.
+   * @returns An Observable containing an array of reactions.
    */
-  getQuestions(): Observable<Pagination> {
-    return this.httpClient.get<Pagination>(`${this.apiBaseUrl}/questions`, {
+  getReactions(): Observable<Pagination> {
+    return this.httpClient.get<Pagination>(`${this.apiBaseUrl}/reactions`, {
       headers: { 'Content-Type': 'application/json' },
     });
   }

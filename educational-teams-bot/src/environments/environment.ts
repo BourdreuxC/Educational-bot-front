@@ -3,7 +3,7 @@ import { MsalGuard, MsalInterceptor } from '@azure/msal-angular';
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost:5025/',
+  apiEndpoint: 'http://localhost:5025/api',
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Pagination } from 'src/app/shared/classes/pagination';
 import { Question } from 'src/app/shared/classes/question';
 import { QuestionsService } from '../../services/questions.service';
 import { addQuestions } from '../../state/questions.actions';
@@ -25,7 +26,7 @@ export class QuestionsComponent implements OnInit {
     private service: QuestionsService,
     private store: Store<QuestionsState>
   ) {
-    this.store.pipe(select(selectQuestions)).subscribe((q) => {
+    this.store.pipe(select(selectQuestions)).subscribe((q: Question[]) => {
       this.questions = q;
     });
   }
@@ -41,22 +42,30 @@ export class QuestionsComponent implements OnInit {
    * Get the questions thanks to the service.
    */
   getQuestions() {
-    this.service.getQuestions().subscribe((questions: Array<Question>) => {
+    this.service.getQuestions().subscribe((result: Pagination) => {
+      let pagination = new Pagination(
+        result.items,
+        result.pageIndex,
+        result.totalPages,
+        result.totalCount,
+        result.hasPreviousPage,
+        result.hasNextPage
+      );
+
+      let questions: Question[] = [];
+
+      pagination.items.forEach((element) => {
+        questions.push(
+          new Question(
+            element.id,
+            element.content,
+            element.tags,
+            element.answers
+          )
+        );
+      });
+
       this.store.dispatch(addQuestions(questions));
     });
-  }
-
-  /**
-   * Display edit modal.
-   */
-  edit() {
-    console.log("salut ça marche je suis l'edit");
-  }
-
-  /**
-   * Removes a question.
-   */
-  delete() {
-    console.log('salut ça marche je suis la destruction');
   }
 }
