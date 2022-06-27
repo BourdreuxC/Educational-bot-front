@@ -16,6 +16,6 @@ export const environment = {
   tenantId: 'fefe9af7-f330-429d-8087-f5e656f7a7ce',
   redirectUri: 'http://localhost:4200',
   applicationInsights: {
-    instrumentationKey: '6e99b84c-08d2-4a21-b689-09cbd01a7dd3',
+    instrumentationKey: '081b97a8-57ab-47fc-ac98-2b1523625a68',
   },
 };
