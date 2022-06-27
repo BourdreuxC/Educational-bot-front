@@ -8,6 +8,10 @@ import { ReactionsComponent } from './reactions/components/reactions/reactions.c
 
 const routes: Routes = [
   {
+    path: '',
+    component: DashboardComponent,
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
   },
