@@ -1,6 +1,11 @@
 name: Lighthouse Check
-on: [pull_request,commit]
-
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   lighthouse-check:
     runs-on: ubuntu-latest
