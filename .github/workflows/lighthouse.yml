@@ -1,5 +1,19 @@
+name: Lighthouse Check
+on: [pull_request]
 
-- name: Lighthouse Audit
-  # You may pin to the exact commit or the version.
-  # uses: jakejarvis/lighthouse-action@a3bcc9973b3ce65beff316b3cac53b92e58dcc12
-  uses: jakejarvis/lighthouse-action@v0.3.2
+jobs:
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - run: mkdir /tmp/artifacts
+    - name: Run Lighthouse
+      uses: foo-software/lighthouse-check-action@master
+      with:
+        outputDirectory: /tmp/artifacts
+        urls: 'https://qbot-front-dev.azurewebsites.net'
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: Lighthouse reports
+        path: /tmp/artifacts
