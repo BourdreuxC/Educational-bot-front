@@ -47,7 +47,7 @@ export class ReactionsComponent implements OnInit {
 
       result.items.forEach((element: Reaction) => {
         reactions.push(
-          new Reaction(element.id, element.reactionId, element.value)
+          new Reaction(element.id, element.reaction, element.value)
         );
       });
 
