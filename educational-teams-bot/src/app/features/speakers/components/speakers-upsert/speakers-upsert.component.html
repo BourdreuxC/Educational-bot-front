@@ -1,0 +1,42 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+<div *ngIf="speaker != undefined">
+        <table style="width:100%;text-align: end;" aria-label="auto upsert table">
+          <ng-container [formGroup]="myForm">
+            <tr>
+                <th>  <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input [formControlName]="'name'" matInput>
+                  </mat-form-field></th>
+                </tr>
+                <tr>
+                    <th>  <mat-form-field appearance="fill">
+                        <mat-label>Nickname</mat-label>
+                        <input [formControlName]="'nickname'" matInput>
+                      </mat-form-field></th>
+                    </tr>
+
+            <tr>
+                  <th style="text-align: left;">
+                    <mat-checkbox labelPosition="before" type="checkbox" [formControlName]="'enabled'">
+                     Enabled
+                    </mat-checkbox></th>
+            </tr>
+            <tr>
+                    <th><mat-form-field appearance="fill">
+                        <mat-label>Tags</mat-label>
+                        <mat-select [formControlName]="'tags'" multiple>
+                          <mat-option *ngFor="let option of tagOptions" [value]="option['id']">{{option.variants}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></th>
+                    </tr>
+            <button mat-fab color="primary" style="background-color:#333999" aria-label="Save Button" (click)="onSubmit()">
+              <mat-icon>save</mat-icon>
+            </button>
+          </ng-container>
+        </table>
+</div>
+<div *ngIf="speaker == undefined">
+    <div>Un problème est survenu durant le chargement des données</div>
+</div>

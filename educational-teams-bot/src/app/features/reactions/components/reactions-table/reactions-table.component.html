@@ -1,0 +1,11 @@
+<div *ngIf="reactionList != undefined">
+    <div *ngFor="let reaction of reactionList" class="tabled">
+        <table style="width:100%" aria-label="auto table"> <tr>
+            <th class="border-right">
+                <div [innerHtml]="reaction.reactionId"></div>
+             </th>
+             <th class="border-right">
+                <div [innerHtml]="reaction.value"></div>
+             </th>
+         <th> <table aria-label="button table" style="display: inline-flex;"><tr><th><span (click)="edit(reaction)" class="icon"><em class="fa-solid fa-pen-to-square"></em></span></th></tr></table></th></tr></table></div>
+    </div>

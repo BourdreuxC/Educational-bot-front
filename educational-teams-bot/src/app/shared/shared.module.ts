@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { ClassesModule } from './classes/classes.module';
 import { AutoDeleteComponent } from './components/auto-delete/auto-delete.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TagListComponent } from './components/tag-list/tag-list.component';
 
 const declarations = [
   PipeExamplePipe,
@@ -28,7 +29,7 @@ const declarations = [
 ];
 
 @NgModule({
-  declarations: [...declarations],
+  declarations: [...declarations, TagListComponent],
   imports: [
     CommonModule,
     RouterModule,
