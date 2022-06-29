@@ -3,11 +3,11 @@
   </button>
 <div *ngIf="reaction != undefined">
         <table style="width:100%;text-align: end;" aria-label="auto upsert table">
-          <ng-container [formGroup]="myForm">
+          <ng-container>
             <tr>
                 <th>  <mat-form-field appearance="fill">
                     <mat-label>Value</mat-label>
-                    <input [formControlName]="'value'" matInput>
+                    <input [formControl]="this.value" matInput>
                   </mat-form-field></th>
                 </tr>
             <button mat-fab color="primary" style="background-color:#333999" aria-label="Save Button" (click)="onSubmit()">

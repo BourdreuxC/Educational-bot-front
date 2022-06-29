@@ -1,11 +1,22 @@
-<div *ngIf="reactionList != undefined">
-    <div *ngFor="let reaction of reactionList" class="tabled">
-        <table style="width:100%" aria-label="auto table"> <tr>
-            <th class="border-right">
-                <div [innerHtml]="reaction.reactionId"></div>
+<div *ngIf="reactions != undefined">
+    <div class="tabled">
+    <table style="width:100%; height: 100%;" aria-label="auto table">
+        <th class="border-right width-table">
+            <div [innerHtml]="'Réactions'"></div>
+         </th>
+         <th class="border-right">
+            <div>Valeurs </div>
+         </th>
+     <th class="width-button"> Actions </th>
+    </table>
+</div>
+    <div *ngFor="let reaction of reactions" class="tabled">
+        <table style="width: 100%;height: 100%;" aria-label="auto table"> <tr>
+            <th class="border-right width-table">
+                <div [innerHtml]="reaction.reaction"></div>
              </th>
              <th class="border-right">
-                <div [innerHtml]="reaction.value"></div>
+                <div [innerHtml]="'Value = '+ reaction.value"></div>
              </th>
-         <th> <table aria-label="button table" style="display: inline-flex;"><tr><th><span (click)="edit(reaction)" class="icon"><em class="fa-solid fa-pen-to-square"></em></span></th></tr></table></th></tr></table></div>
+         <th class="width-button"> <table aria-label="button table" style="display: inline-flex;"><tr><th><span (click)="edit(reaction)" class="icon"><em class="fa-solid fa-pen-to-square"></em></span></th></tr></table></th></tr></table></div>
     </div>

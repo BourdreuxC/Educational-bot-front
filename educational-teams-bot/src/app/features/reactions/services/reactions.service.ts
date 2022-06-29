@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Pagination } from 'src/app/shared/classes/pagination';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { Tag } from 'src/app/shared/classes/tag';
 import { environment } from 'src/environments/environment';
@@ -19,7 +20,7 @@ export class ReactionsService {
     * Initializes a new instance of the ReactionService class.
     * @param httpClient HttpClient to use in this service.
     */
-constructor(private http: HttpClient) {
+constructor(private httpClient: HttpClient) {
   this.apiBaseUrl = environment.apiEndpoint;
  }
 
@@ -27,25 +28,22 @@ constructor(private http: HttpClient) {
     * Request the API to edit an object.
     * @returns nothing ?
     */
-editReaction(reaction:any){
+editReaction(body:any){
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
     })
   }
 
- return this.http.put(this.apiBaseUrl+'/api/reactions', reaction , httpOptions)  
+return this.httpClient.post(this.apiBaseUrl+'/reactions', body , httpOptions)
 }
-     /**
-    * Request the API to get a list of a type.
-    * @returns An Observable containing an array.
-    */
-   getReaction():Observable<any>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    }
-    return this.http.get<any>(this.apiBaseUrl+'/api/reactions', httpOptions)
-}
+  /**
+   * Request the API to get the list of reactions.
+   * @returns An Observable containing an array of reactions.
+   */
+   getReactions(): Observable<Pagination> {
+    return this.httpClient.get<Pagination>(`${this.apiBaseUrl}/reactions`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }
