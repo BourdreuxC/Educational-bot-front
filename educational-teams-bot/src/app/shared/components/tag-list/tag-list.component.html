@@ -2,7 +2,9 @@
 <div *ngIf="tagList != undefined">
     <div *ngFor="let tag of tagList" class="tabled">
         <table style="width:100%" aria-label="auto table"> <tr>
-            {{tag.variants[0]}}
+            <th>
+                {{tag.variants[0]}}
+            </th>
          </tr>
 
         </table></div>

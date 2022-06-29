@@ -32,33 +32,38 @@ export class AutoCrudService {
       }),
     };
 
-
-    return this.http.post('http://localhost:5025/api/'+type+'s', object , httpOptions)  ;
+    return this.http.post(
+      'http://localhost:5025/api/' + type + 's',
+      object,
+      httpOptions
+    );
   }
 
-  autoDelete(object:any){
+  autoDelete(object: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    }
+        'Content-Type': 'application/json',
+      }),
+    };
 
-    return this.http.post('http://localhost:5025/api/'+object.constructor.name+'s', object , httpOptions)
-   // return this.http.delete('http://localhost:5025/api/'+type+'s'+'/'+object['id'])
+    return this.http.post(
+      'http://localhost:5025/api/' + object.constructor.name + 's',
+      object,
+      httpOptions
+    );
+    // return this.http.delete('http://localhost:5025/api/'+type+'s'+'/'+object['id'])
   }
-       /**
-      * Request the API to get a list of a type.
-      * @returns An Observable containing an array.
-      */
-  fetchList(type:string){
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
+  /**
+   * Request the API to get a list of a type.
+   * @returns An Observable containing an array.
+   */
+  fetchList(type: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
       }),
     };
 
     return this.http.get('http://localhost:5025/api/' + type, httpOptions);
-    //return this.http.get("http://localhost:"+type+'s');
   }
 }

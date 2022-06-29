@@ -8,13 +8,14 @@ import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.comp
 @Component({
   selector: 'app-speakers-table',
   templateUrl: './speakers-table.component.html',
-  styleUrls: ['./speakers-table.component.scss']
+  styleUrls: ['./speakers-table.component.scss'],
 })
 export class SpeakersTableComponent implements OnInit {
   @Input() speakerList!: Speaker[];
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
+    // This is intentional
   }
 
   listModal(tagList: any[]) {
@@ -23,16 +24,14 @@ export class SpeakersTableComponent implements OnInit {
     });
   }
   edit(speaker: Speaker) {
-    let dialogRef = this.dialog.open(SpeakersUpsertComponent, {
+    this.dialog.open(SpeakersUpsertComponent, {
       data: { speaker: speaker },
     });
   }
 
-  delete(speaker:Speaker) {
-    
-    let dialogRef = this.dialog.open(SpeakersDeleteComponent, {
-      data: {speaker: speaker, }
-    }
-    );
+  delete(speaker: Speaker) {
+    this.dialog.open(SpeakersDeleteComponent, {
+      data: { speaker: speaker },
+    });
   }
 }

@@ -2,7 +2,9 @@
 <div *ngIf="objectList != undefined">
     <div *ngFor="let object of objectList" class="tabled">
         <table style="width:100%" aria-label="auto table"> <tr>
-            {{object['variants'][0] ?? object['name'] ?? object['value'] ?? object['libelle'] ?? object['label']}}
+            <th>
+                {{object['variants'][0] ?? object['name'] ?? object['value'] ?? object['libelle'] ?? object['label']}}
+            </th>
          </tr>
 
         </table></div>

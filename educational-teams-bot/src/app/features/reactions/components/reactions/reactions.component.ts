@@ -15,10 +15,14 @@ export class ReactionsComponent implements OnInit {
   /**
    * Initializes a new instance of the ReactionsComponent class.
    */
-  constructor() {}
+  constructor() {
+    // This is intentional
+  }
 
   /**
    * Trigger actions on component initialization.
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // This is intentional
+  }
 }

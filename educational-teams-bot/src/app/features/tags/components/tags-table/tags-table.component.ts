@@ -7,26 +7,25 @@ import { TagsUpsertComponent } from '../tags-upsert/tags-upsert.component';
 @Component({
   selector: 'app-tags-table',
   templateUrl: './tags-table.component.html',
-  styleUrls: ['./tags-table.component.scss']
+  styleUrls: ['./tags-table.component.scss'],
 })
 export class TagsTableComponent implements OnInit {
   @Input() tagList!: Tag[];
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
+    // This is intentional
   }
 
   edit(tag: Tag) {
-    let dialogRef = this.dialog.open(TagsUpsertComponent, {
+    this.dialog.open(TagsUpsertComponent, {
       data: { tag: tag },
     });
   }
 
-  delete(tag:Tag) {
-    
-    let dialogRef = this.dialog.open(TagsDeleteComponent, {
-      data: {tag: tag, }
-    }
-    );
+  delete(tag: Tag) {
+    this.dialog.open(TagsDeleteComponent, {
+      data: { tag: tag },
+    });
   }
 }

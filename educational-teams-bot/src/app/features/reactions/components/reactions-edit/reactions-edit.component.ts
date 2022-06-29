@@ -25,7 +25,9 @@ export class ReactionsEditComponent implements OnInit {
     this.value = new FormControl(this.reaction.value);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // This is intentional
+  }
 
   onSubmit() {
     let id = this.reaction.id;
@@ -36,8 +38,9 @@ export class ReactionsEditComponent implements OnInit {
       reaction,
       value,
     };
-    this.reactionsService.editReaction(object).subscribe((value) => {
+    this.reactionsService.editReaction(object).subscribe((val) => {
       this.dialogRef.close();
+      return val;
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Reaction } from 'src/app/shared/classes/reaction';
@@ -58,6 +58,7 @@ export class ReactionsTableComponent implements OnInit {
     const closedDialog = dialogRef.beforeClosed();
     closedDialog.subscribe((value) => {
       this.ngOnInit();
+      return value;
     });
   }
 }
