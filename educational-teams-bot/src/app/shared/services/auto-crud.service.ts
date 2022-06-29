@@ -51,7 +51,6 @@ export class AutoCrudService {
       object,
       httpOptions
     );
-    // return this.http.delete('http://localhost:5025/api/'+type+'s'+'/'+object['id'])
   }
   /**
    * Request the API to get a list of a type.
