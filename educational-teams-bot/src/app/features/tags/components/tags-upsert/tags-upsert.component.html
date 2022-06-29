@@ -1,0 +1,18 @@
+<div *ngIf="tag != undefined">
+        <table style="width:100%" aria-label="auto table"> <tr *ngFor="let variant of tag.variants">
+            <th>
+                <div  >{{variant}}</div>
+             </th>
+         <th>
+            <span (click)="delete(tag)" class="icon"><em class="fa-solid fa-trash"></em></span>
+        </th>
+    </tr>
+    <mat-form-field appearance="fill">
+        <mat-label>Nouveau Variant</mat-label>
+        <input [formControl]="this.newTag" matInput>
+      </mat-form-field>
+      <button mat-fab color="primary" style="background-color:#333999" aria-label="Save Button" (click)="onSubmit()">
+        <mat-icon>save</mat-icon>
+      </button>
+    </table>
+    </div>

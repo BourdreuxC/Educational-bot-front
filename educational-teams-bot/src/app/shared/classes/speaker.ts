@@ -5,9 +5,9 @@ export class Speaker {
     name: string;
     nickname: string;
     enabled:boolean;
-    tags: string[];
+    tags: Tag[];
 
-    constructor(id : string, name: string, nickname:string,enabled:boolean, tags:string[]) {
+    constructor(id : string, name: string, nickname:string,enabled:boolean, tags:Tag[]) {
         this.id = id;
         this.name = name;
         this.nickname = nickname;

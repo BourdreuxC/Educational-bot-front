@@ -1,0 +1,21 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+<div *ngIf="reaction != undefined">
+        <table style="width:100%;text-align: end;" aria-label="auto upsert table">
+          <ng-container>
+            <tr>
+                <th>  <mat-form-field appearance="fill">
+                    <mat-label>Value</mat-label>
+                    <input [formControl]="this.value" matInput>
+                  </mat-form-field></th>
+                </tr>
+            <button mat-fab color="primary" style="background-color:#333999" aria-label="Save Button" (click)="onSubmit()">
+              <mat-icon>save</mat-icon>
+            </button>
+          </ng-container>
+        </table>
+</div>
+<div *ngIf="reaction == undefined">
+    <div>Un problème est survenu durant le chargement des données</div>
+</div>

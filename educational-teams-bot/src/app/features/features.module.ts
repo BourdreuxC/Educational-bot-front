@@ -6,20 +6,10 @@ import { SpeakersModule } from './speakers/speakers.module';
 import { QuestionsModule } from './questions/questions.module';
 import { TagsModule } from './tags/tags.module';
 import { ReactionsModule } from './reactions/reactions.module';
-import { EffectsModule } from '@ngrx/effects';
-import { ReactionsEffects } from './reactions/state/reactions.effects';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    DashboardModule,
-    SpeakersModule,
-    FeaturesRoutingModule,
-    QuestionsModule,
-    TagsModule,
-    ReactionsModule,
-    EffectsModule.forFeature([ReactionsEffects]),
+  declarations: [
   ],
+  imports: [CommonModule, DashboardModule, SpeakersModule, FeaturesRoutingModule, QuestionsModule, TagsModule, ReactionsModule],
 })
 export class FeaturesModule {}

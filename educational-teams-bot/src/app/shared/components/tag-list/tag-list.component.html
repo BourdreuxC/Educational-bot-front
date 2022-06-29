@@ -1,0 +1,14 @@
+
+<div *ngIf="tagList != undefined">
+    <div *ngFor="let tag of tagList" class="tabled">
+        <table style="width:100%" aria-label="auto table"> <tr>
+            <th>
+                {{tag.variants[0]}}
+            </th>
+         </tr>
+
+        </table></div>
+    </div>
+    <div *ngIf="tagList == undefined">
+        <div>Un problème est survenu durant le chargement des données</div>
+    </div>

@@ -1,7 +1,7 @@
 /**
  * Reaction class.
  */
-export class Reaction {
+ export class Reaction {
   /**
    * Reaction identifier.
    */

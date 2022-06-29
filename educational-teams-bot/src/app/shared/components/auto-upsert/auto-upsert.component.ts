@@ -1,6 +1,6 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AutoCrudService } from 'src/app/shared/services/auto-crud.service';
 import { AutoTableState } from '../../states/auto-table.reducer';
 import { selectObjects } from '../../states/auto-table.selector';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './auto-upsert.component.html',
   styleUrls: ['./auto-upsert.component.scss'],
 })
-export class AutoUpsertComponent {
+export class AutoUpsertComponent implements OnInit {
   myForm!: FormGroup;
   _object: any;
   children?: any;
@@ -28,7 +28,7 @@ export class AutoUpsertComponent {
           propertyType,
           propertyName: property,
         };
-        if (propertyType === 'array' && property != 'altIds') {
+        if (propertyType === 'array') {
           this.listOfType(property).subscribe((list) => {
             propertyInfo.children = list['items'];
           });
@@ -41,10 +41,20 @@ export class AutoUpsertComponent {
 
     this.myForm = this.fb.group({});
     this.objectProperties.forEach((object) => {
-      this.myForm.addControl(
-        object.propertyName,
-        this.fb.control(value[object.propertyName])
-      );
+      if (object.propertyType === 'array') {
+        let idLists: any[] = [];
+        value[object.propertyName].forEach((element: any) => {
+          idLists.push(element['id']);
+        });
+        console.log(idLists);
+
+        this.myForm.addControl(object.propertyName, this.fb.control(idLists));
+      } else {
+        this.myForm.addControl(
+          object.propertyName,
+          this.fb.control(value[object.propertyName])
+        );
+      }
     });
     this._object = value;
   }
@@ -60,6 +70,10 @@ export class AutoUpsertComponent {
       this.object = o;
     });
     this.object = data['object'];
+  }
+
+  ngOnInit(): void {
+    // This is intentional
   }
 
   propertyOfObject(object: any) {

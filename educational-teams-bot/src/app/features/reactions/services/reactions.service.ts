@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/shared/classes/pagination';
@@ -21,6 +21,23 @@ export class ReactionsService {
     this.apiBaseUrl = environment.apiEndpoint;
   }
 
+  /**
+   * Request the API to edit an object.
+   * @returns nothing ?
+   */
+  editReaction(body: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.httpClient.post(
+      this.apiBaseUrl + '/reactions',
+      body,
+      httpOptions
+    );
+  }
   /**
    * Request the API to get the list of reactions.
    * @returns An Observable containing an array of reactions.

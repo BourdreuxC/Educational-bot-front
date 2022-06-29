@@ -38,6 +38,20 @@ export class AutoCrudService {
       httpOptions
     );
   }
+
+  autoDelete(object: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.post(
+      'http://localhost:5025/api/' + object.constructor.name + 's',
+      object,
+      httpOptions
+    );
+  }
   /**
    * Request the API to get a list of a type.
    * @returns An Observable containing an array.
@@ -50,6 +64,5 @@ export class AutoCrudService {
     };
 
     return this.http.get('http://localhost:5025/api/' + type, httpOptions);
-    //return this.http.get("http://localhost:"+type+'s');
   }
 }
