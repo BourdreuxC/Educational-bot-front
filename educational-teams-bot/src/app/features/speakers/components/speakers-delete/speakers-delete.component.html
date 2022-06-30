@@ -1,0 +1,14 @@
+<div style="text-align: center;" *ngIf="speaker!= undefined">
+    <img style="width: 150px;" alt="delete" src="../../../../../assets/images/delete.png">
+    <div style="display: flex;justify-content: center;">Êtes vous sur ?</div>
+    <div style="text-align: center;">Voulez vous vraiment supprimer cet élement ? <br>
+        Ce proceder ne peut pas être annuler.</div>
+        <div style="display: flex;justify-content: center;margin-top: 10px;">
+            <button mat-flat-button color="primary" style="background-color: grey;" aria-label="Cancel Button">Non, je veux anuler</button>
+            <button mat-flat-button color="warn" aria-label="Delete Button" (click)="delete()">Oui je suis sur</button>
+        </div>
+
+</div>
+<div *ngIf="speaker == undefined">
+    <div>Un problème est survenu durant le chargement des données</div>
+</div>

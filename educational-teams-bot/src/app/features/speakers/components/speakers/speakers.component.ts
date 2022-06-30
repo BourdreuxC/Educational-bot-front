@@ -1,23 +1,13 @@
-import { Component,Input, OnInit } from '@angular/core';
-import { Speaker } from 'src/app/shared/classes/speaker';
-import { Tag } from 'src/app/shared/classes/tag';
+import { Component, OnInit } from '@angular/core';
 @Component({
   templateUrl: './speakers.component.html',
-  styleUrls: ['./speakers.component.scss']
+  styleUrls: ['./speakers.component.scss'],
 })
 export class SpeakersComponent implements OnInit {
-@Input() speakers!: Speaker[]
   constructor() {
-    this.speakers = [new Speaker("abcd", "Michel Girard", "michel.girard@diiage.org", "Absent", [new Tag("a", "C#"), new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html")]),
-    new Speaker("dz", "Michel Girardot", "michel.girard@diiage.org", "Absent", [new Tag("a", "C#"), new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html") , new Tag("b", "html")])
-  ]
+    // This is intentional
   }
   ngOnInit() {
-   }
-   edit(){
-    console.log("salut ça marche je suis l'edit");
-  }
-  delete(){
-    console.log("salut ça marche je suis la destruction");
+    // This is intentional
   }
 }

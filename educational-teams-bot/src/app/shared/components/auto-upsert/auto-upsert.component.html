@@ -1,0 +1,32 @@
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+<div *ngIf="object != undefined">
+        <table style="width:100%;text-align: end;" aria-label="auto upsert table">
+          <ng-container [formGroup]="myForm">
+            <tr *ngFor="let objectProperty of objectProperties" >
+                    <th *ngIf="objectProperty.propertyType == 'array'"><mat-form-field appearance="fill">
+                        <mat-label>{{objectProperty.propertyName | titlecase}}</mat-label>
+                        <mat-select [formControlName]="objectProperty.propertyName" multiple>
+                          <mat-option *ngFor="let option of objectProperty.children" [value]="option['id']">{{option['variants'][0] ?? option['name'] ?? option['value'] ?? option['libelle'] ?? option['label']}}</mat-option>
+                        </mat-select>
+                      </mat-form-field></th>
+                      <th style="text-align: left;" *ngIf="objectProperty.propertyType === 'boolean'">
+                        <mat-checkbox labelPosition="before" type="checkbox" [formControlName]="objectProperty.propertyName">
+                          {{objectProperty.propertyName | titlecase}}
+                        </mat-checkbox></th>
+                    <th *ngIf="objectProperty.propertyType != 'array' && objectProperty.propertyType != 'boolean' && objectProperty.propertyName != 'id'">  <mat-form-field appearance="fill">
+                        <mat-label>{{objectProperty.propertyName  | titlecase}}</mat-label>
+                        <input [formControlName]="objectProperty.propertyName" matInput>
+                      </mat-form-field></th>
+                
+            </tr>
+            <button mat-fab color="primary" style="background-color:#333999" aria-label="Save Button" (click)="onSubmit()">
+              <mat-icon>save</mat-icon>
+            </button>
+          </ng-container>
+        </table>
+</div>
+<div *ngIf="object == undefined">
+    <div>Un problème est survenu durant le chargement des données</div>
+</div>

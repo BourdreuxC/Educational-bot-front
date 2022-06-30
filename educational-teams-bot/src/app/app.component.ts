@@ -31,7 +31,6 @@ export class AppComponent {
       .subscribe((result: EventMessage) => {
         const payload = result.payload as AuthenticationResult;
         this.authService.instance.setActiveAccount(payload.account);
-        console.log(this.authService.instance.getActiveAccount());
       });
 
     this.msalBroadcastService.inProgress$
@@ -44,6 +43,7 @@ export class AppComponent {
   setStatusDrawer(value: boolean): void {
     this.drawerOpen = value;
   }
+
   ngOnDestroy(): void {
     this._destroying$.next();
     this._destroying$.complete();

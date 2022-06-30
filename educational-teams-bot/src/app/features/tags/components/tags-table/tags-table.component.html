@@ -1,0 +1,50 @@
+<div class="table-top" *ngIf="tags != undefined">
+  <div class="tabled">
+    <table style="width: 100%; height: 100%" aria-label="auto table">
+      <th class="border-right width-table">Tag</th>
+      <th class="border-right width-table">Nombre de Variants</th>
+      <th class="width-button">Actions</th>
+    </table>
+  </div>
+  <div *ngFor="let tag of tags" class="tabled">
+    <table style="width: 100%" aria-label="auto table">
+      <tr>
+        <th class="border-right width-table">
+          <div>
+            {{ tag.variants[0] }}
+          </div>
+        </th>
+        <th class="border-right width-table">
+          <div>
+            {{ tag.variants.length }}
+          </div>
+        </th>
+        <th class="width-button">
+          <table aria-label="button table" style="display: inline-flex">
+            <tr>
+              <th>
+                <span (click)="edit(tag)" class="icon"
+                  ><em class="fa-solid fa-pen-to-square"></em
+                ></span>
+              </th>
+              <th>
+                <span (click)="delete(tag)" class="icon"
+                  ><em class="fa-solid fa-trash"></em
+                ></span>
+              </th>
+            </tr>
+          </table>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
+<button
+  mat-fab
+  color="primary"
+  style="background-color: #333999; margin-left: 60%"
+  aria-label="Add Button"
+  (click)="create()"
+>
+  <mat-icon>add_circle</mat-icon>
+</button>

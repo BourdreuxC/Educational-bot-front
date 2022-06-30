@@ -3,15 +3,15 @@ import { Tag } from "./tag";
 export class Speaker {
     id: string;
     name: string;
-    mail: string;
-    status:string;
-    tagList: Tag[];
+    nickname: string;
+    enabled:boolean;
+    tags: Tag[];
 
-    constructor(id : string, name: string, mail:string,status:string,tagList:Tag[]) {
+    constructor(id : string, name: string, nickname:string,enabled:boolean, tags:Tag[]) {
         this.id = id;
         this.name = name;
-        this.mail = mail;
-        this.status = status;
-        this.tagList = tagList;
+        this.nickname = nickname;
+        this.enabled = enabled;
+        this.tags = tags;
     }
 }

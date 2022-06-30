@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpeakersComponent } from './components/speakers/speakers.component';
-import { SpeakerItemComponent } from './components/speaker-item/speaker-item.component';
-import { AutoTableComponent } from './components/auto-table/auto-table.component';
-import { AutoListComponent } from './components/auto-list/auto-list.component';
-import { AutoUpsertComponent } from './components/auto-upsert/auto-upsert.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SpeakersDeleteComponent } from './components/speakers-delete/speakers-delete.component';
+import { SpeakersTableComponent } from './components/speakers-table/speakers-table.component';
+import { SpeakersUpsertComponent } from './components/speakers-upsert/speakers-upsert.component';
 
 @NgModule({
   declarations: [
     SpeakersComponent,
-    SpeakerItemComponent,
-    AutoTableComponent,
-    AutoListComponent,
-    AutoUpsertComponent
+    SpeakersTableComponent,
+    SpeakersUpsertComponent,
+    SpeakersDeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -29,9 +28,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
-    ReactiveFormsModule 
-  ]
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
-export class SpeakersModule { }
+export class SpeakersModule {}
