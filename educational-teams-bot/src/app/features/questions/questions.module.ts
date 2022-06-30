@@ -5,9 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { questionsFeatureKey, reducer } from './state/questions.reducer';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { QuestionsTableComponent } from './components/questions-table/questions-table.component';
 
 @NgModule({
-  declarations: [QuestionsComponent],
+  declarations: [QuestionsComponent, QuestionsTableComponent],
   imports: [
     CommonModule,
     HttpClientModule,

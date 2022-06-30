@@ -1,0 +1,29 @@
+<div class="table-top" *ngIf="questions != undefined">
+  <div class="tabled">
+    <table style="width: 100%; height: 100%" aria-label="auto table">
+      <th class="border-right width-table">Questions</th>
+      <th class="border-right width-table">Tags</th>
+      <th class="width-table">Best Answer</th>
+    </table>
+  </div>
+  <div *ngFor="let question of questions" class="tabled">
+    <table style="width: 100%; height: 100%" aria-label="auto table">
+      <tr>
+        <th class="border-right width-table">
+          <div [innerHtml]="question.content"></div>
+        </th>
+        <th class="border-right width-table">
+          <div>
+            "Tags": {{ question.tags.length
+            }}<span (click)="listModal(question.tags)" class="icon"
+              ><em class="fa-solid fa-list"></em
+            ></span>
+          </div>
+        </th>
+        <th class="width-table">
+          <div [innerHtml]="question.bestAnswer"></div>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
