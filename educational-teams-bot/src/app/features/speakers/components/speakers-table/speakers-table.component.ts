@@ -23,7 +23,7 @@ export class SpeakersTableComponent implements OnInit {
   constructor(
     private store: Store<SpeakersState>,
     private service: SpeakersService,
-    public dialog: MatDialog
+    private dialog: MatDialog
   ) {
     this.store.pipe(select(selectSpeakers)).subscribe((speakers) => {
       this.speakers = speakers;
@@ -34,6 +34,9 @@ export class SpeakersTableComponent implements OnInit {
     this.getSpeakers();
   }
 
+  /**
+   * Display a modal of the list.
+   */
   listModal(tagList: any[]) {
     this.dialog.open(TagListComponent, {
       data: { tagList: tagList },

@@ -1,11 +1,10 @@
-import { Answer } from "./answer";
-import { Tag } from "./tag";
+import { Answer } from './answer';
+import { Tag } from './tag';
 
 /**
  * Question class.
  */
 export class Question {
-
   /**
    * Question identifier.
    */
@@ -19,12 +18,17 @@ export class Question {
   /**
    * Question tags.
    */
-  tags: Array<Tag>
+  tags: Array<Tag>;
 
   /**
    * Question answers.
    */
-  answers: Array<Answer>
+  answers: Array<Answer>;
+
+  /**
+   * Question best answer.
+   */
+  bestAnswer: Answer;
 
   /**
    * Initializes a new instance of the Question class.
@@ -32,11 +36,19 @@ export class Question {
    * @param content Question content.
    * @param tags Question tags.
    * @param answers Question answers.
+   * @param bestAnswer Question best answer.
    */
-  constructor(id: string, content: string, tags: Array<Tag>, answers: Array<Answer>) {
+  constructor(
+    id: string,
+    content: string,
+    tags: Array<Tag>,
+    answers: Array<Answer>,
+    bestAnswer: Answer
+  ) {
     this.id = id;
     this.content = content;
     this.tags = tags;
     this.answers = answers;
+    this.bestAnswer = bestAnswer;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Tag } from 'src/app/shared/classes/tag';
 import { TagsService } from '../../services/tags.service';
@@ -20,7 +20,7 @@ export class TagsEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.tag = data['tag'];
-    this.newTag = new FormControl();
+    this.newTag = new FormControl(Validators.required);
   }
 
   ngOnInit(): void {
@@ -40,15 +40,17 @@ export class TagsEditComponent implements OnInit {
   }
 
   onSubmit() {
-    let id = this.tag.id;
-    let variant = this.newTag.value;
-    const object = {
-      id,
-      variant,
-    };
-    this.tagsService.upsertVariant(object).subscribe((value) => {
-      this.dialogRef.close();
-      return value;
-    });
+    if (this.newTag.valid) {
+      let id = this.tag.id;
+      let variant = this.newTag.value;
+      const object = {
+        id,
+        variant,
+      };
+      this.tagsService.upsertVariant(object).subscribe((value) => {
+        this.dialogRef.close();
+        return value;
+      });
+    }
   }
 }
