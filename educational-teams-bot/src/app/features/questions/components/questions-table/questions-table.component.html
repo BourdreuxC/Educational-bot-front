@@ -3,7 +3,7 @@
     <table style="width: 100%; height: 100%" aria-label="auto table">
       <th class="border-right width-table">Questions</th>
       <th class="border-right width-table">Tags</th>
-      <th class="border-right width-table">Best Answer</th>
+      <th class="width-table">Best Answer</th>
     </table>
   </div>
   <div *ngFor="let question of questions" class="tabled">
@@ -20,7 +20,7 @@
             ></span>
           </div>
         </th>
-        <th class="border-right width-table">
+        <th class="width-table">
           <div [innerHtml]="question.bestAnswer"></div>
         </th>
       </tr>
