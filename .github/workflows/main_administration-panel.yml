@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'administration-panel'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7B8AA187F80640E1A3535DD770E5452E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
