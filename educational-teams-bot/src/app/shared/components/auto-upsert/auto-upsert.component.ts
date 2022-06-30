@@ -46,7 +46,6 @@ export class AutoUpsertComponent implements OnInit {
         value[object.propertyName].forEach((element: any) => {
           idLists.push(element['id']);
         });
-        console.log(idLists);
 
         this.myForm.addControl(object.propertyName, this.fb.control(idLists));
       } else {

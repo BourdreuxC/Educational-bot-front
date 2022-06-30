@@ -11,17 +11,14 @@ import { ReactionsService } from '../../services/reactions.service';
 })
 export class ReactionsEditComponent implements OnInit {
   value: FormControl;
-  myForm!: FormGroup;
   @Input() reaction!: Reaction;
 
   constructor(
     private dialogRef: MatDialogRef<ReactionsEditComponent>,
     private reactionsService: ReactionsService,
-    private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.reaction = data['reaction'];
-    this.myForm = this.fb.group({});
     this.value = new FormControl(this.reaction.value);
   }
 
