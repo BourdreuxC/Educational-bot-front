@@ -1,0 +1,27 @@
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-label>Variants</mat-label>
+  <mat-chip-list #chipList aria-label="variant">
+    <mat-chip *ngFor="let variant of variants" (removed)="remove(variant)">
+      {{ variant }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      placeholder="Nouveau variant..."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-list>
+</mat-form-field>
+<button
+  mat-fab
+  color="primary"
+  style="background-color: #333999"
+  aria-label="Save Button"
+  (click)="onSubmit()"
+>
+  <mat-icon>save</mat-icon>
+</button>

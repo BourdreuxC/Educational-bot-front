@@ -23,8 +23,8 @@ export class ReactionsTableComponent implements OnInit {
     private service: ReactionsService,
     public dialog: MatDialog
   ) {
-    this.store.pipe(select(selectReactions)).subscribe((q) => {
-      this.reactions = q;
+    this.store.pipe(select(selectReactions)).subscribe((react) => {
+      this.reactions = react;
     });
   }
   /**
