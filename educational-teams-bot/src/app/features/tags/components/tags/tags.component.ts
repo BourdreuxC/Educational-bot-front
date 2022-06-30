@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tags.component.scss'],
 })
 export class TagsComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    // This is intentional
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // This is intentional
+  }
 }
