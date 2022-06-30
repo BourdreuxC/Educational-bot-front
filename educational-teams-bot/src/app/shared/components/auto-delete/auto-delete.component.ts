@@ -16,11 +16,12 @@ export class AutoDeleteComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    // This is intentional
   }
 
   delete() {
     this.autoCrudService.autoDelete(this.object)
-    
+
   }
 
 }

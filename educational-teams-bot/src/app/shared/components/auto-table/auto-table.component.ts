@@ -21,8 +21,8 @@ export class AutoTableComponent {
         keys.splice(index, 1);
       }
     })
-    
-    
+
+
     return keys
   }
   listModal(objects: any[]) {
@@ -31,14 +31,14 @@ export class AutoTableComponent {
     });
   }
   edit(object: any) {
-    let dialogRef = this.dialog.open(AutoUpsertComponent, {
+    this.dialog.open(AutoUpsertComponent, {
       data: { object: object },
     });
   }
 
   delete(object:any) {
-    
-    let dialogRef = this.dialog.open(AutoDeleteComponent, {
+
+    this.dialog.open(AutoDeleteComponent, {
       data: {object: object, }
     }
     );
