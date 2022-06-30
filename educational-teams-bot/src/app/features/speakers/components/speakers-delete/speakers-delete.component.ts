@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { SpeakersService } from '../../services/speakers.service';
 
@@ -12,6 +12,7 @@ export class SpeakersDeleteComponent implements OnInit {
   @Input() speaker!: Speaker;
 
   constructor(
+    private dialogRef: MatDialogRef<SpeakersDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) data: any,
     private speakersService: SpeakersService
   ) {
@@ -23,6 +24,9 @@ export class SpeakersDeleteComponent implements OnInit {
   }
 
   delete() {
-    this.speakersService.deleteSpeaker(this.speaker);
+    this.speakersService.deleteSpeaker(this.speaker).subscribe((value) => {
+      this.dialogRef.close();
+      return value;
+    });
   }
 }
