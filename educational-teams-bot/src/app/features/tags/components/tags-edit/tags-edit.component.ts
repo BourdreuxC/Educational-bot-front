@@ -1,19 +1,20 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Tag } from 'src/app/shared/classes/tag';
 import { TagsService } from '../../services/tags.service';
 
 @Component({
-  selector: 'app-tags-upsert',
-  templateUrl: './tags-upsert.component.html',
-  styleUrls: ['./tags-upsert.component.scss'],
+  selector: 'app-tags-edit',
+  templateUrl: './tags-edit.component.html',
+  styleUrls: ['./tags-edit.component.scss'],
 })
-export class TagsUpsertComponent implements OnInit {
+export class TagsEditComponent implements OnInit {
   newTag: FormControl;
   @Input() tag!: Tag;
 
   constructor(
+    private dialogRef: MatDialogRef<TagsEditComponent>,
     private tagsService: TagsService,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) data: any
@@ -32,7 +33,10 @@ export class TagsUpsertComponent implements OnInit {
       id,
       variant,
     };
-    this.tagsService.upsertVariant(object);
+    this.tagsService.upsertVariant(object).subscribe((value) => {
+      this.dialogRef.close();
+      return value;
+    });
   }
 
   onSubmit() {
@@ -42,6 +46,9 @@ export class TagsUpsertComponent implements OnInit {
       id,
       variant,
     };
-    this.tagsService.upsertVariant(object);
+    this.tagsService.upsertVariant(object).subscribe((value) => {
+      this.dialogRef.close();
+      return value;
+    });
   }
 }

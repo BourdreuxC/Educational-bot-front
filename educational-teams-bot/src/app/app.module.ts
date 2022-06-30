@@ -16,7 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { questionsReducer } from './features/questions/state/questions.reducer';
@@ -25,6 +25,9 @@ import { ReactionsModule } from './features/reactions/reactions.module';
 import { reactionsReducer } from './features/reactions/state/reactions.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ReactionsEffects } from './features/reactions/state/reactions.effects';
+import { tagsReducer } from './features/tags/state/tags.reducer';
+import { speakersReducer } from './features/speakers/state/speakers.reducer';
+import { MatChipsModule } from '@angular/material/chips';
 
 const imports = [
   BrowserModule,
@@ -35,6 +38,7 @@ const imports = [
   NgbModule,
   MatDialogModule,
   MatFormFieldModule,
+  MatChipsModule,
   MatInputModule,
   MatCheckboxModule,
   MatSelectModule,
@@ -70,6 +74,8 @@ const imports = [
   StoreModule.forRoot({
     questions: questionsReducer,
     reactions: reactionsReducer,
+    tags: tagsReducer,
+    speakers: speakersReducer,
   }),
   EffectsModule.forRoot([ReactionsEffects]),
 ];

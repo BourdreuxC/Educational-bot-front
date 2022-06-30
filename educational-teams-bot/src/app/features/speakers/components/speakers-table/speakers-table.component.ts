@@ -1,7 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.component';
+import { SpeakersService } from '../../services/speakers.service';
+import { addSpeakers } from '../../state/speakers.actions';
+import { SpeakersState } from '../../state/speakers.reducer';
 import { SpeakersDeleteComponent } from '../speakers-delete/speakers-delete.component';
 import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.component';
 
@@ -11,8 +15,15 @@ import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.comp
   styleUrls: ['./speakers-table.component.scss'],
 })
 export class SpeakersTableComponent implements OnInit {
-  @Input() speakerList!: Speaker[];
-  constructor(public dialog: MatDialog) {}
+  /**
+   * Speakers to display.
+   */
+  speakers: Speaker[] = [];
+  constructor(
+    private store: Store<SpeakersState>,
+    private service: SpeakersService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     // This is intentional
@@ -21,6 +32,29 @@ export class SpeakersTableComponent implements OnInit {
   listModal(tagList: any[]) {
     this.dialog.open(TagListComponent, {
       data: { tagList: tagList },
+    });
+  }
+
+  /**
+   * Get the speakers thanks to the service.
+   */
+  getSpeakers() {
+    this.service.getSpeakers().subscribe((result: any) => {
+      let speakers: Speaker[] = [];
+
+      result.items.forEach((element: Speaker) => {
+        speakers.push(
+          new Speaker(
+            element.id,
+            element.name,
+            element.nickname,
+            element.enabled,
+            element.tags
+          )
+        );
+      });
+      this.store.dispatch(addSpeakers(speakers));
+      console.log(speakers);
     });
   }
   edit(speaker: Speaker) {
