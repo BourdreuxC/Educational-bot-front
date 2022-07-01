@@ -1,14 +1,26 @@
-
 <div *ngIf="tagList != undefined">
-    <div *ngFor="let tag of tagList" class="tabled">
-        <table style="width:100%" aria-label="auto table"> <tr>
-            <th>
-                {{tag.variants[0]}}
-            </th>
-         </tr>
-
-        </table></div>
-    </div>
-    <div *ngIf="tagList == undefined">
-        <div>Un problème est survenu durant le chargement des données</div>
-    </div>
+  <div *ngFor="let tag of tagList" class="tabled">
+    <table style="width: 100%" aria-label="auto table">
+      <tr>
+        <th>
+          {{ tag.variants[0] }}
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
+<div *ngIf="tagList == undefined">
+  <div>Un problème est survenu durant le chargement des données</div>
+</div>
+<div style="text-align: center">
+  <a [routerLink]="['/tags']">
+    <button
+      mat-button
+      class="button-color"
+      aria-label="Save Button"
+      (click)="closeModal()"
+    >
+      Accèder à la liste des Tags
+    </button>
+  </a>
+</div>

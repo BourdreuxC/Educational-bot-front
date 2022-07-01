@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Pagination } from 'src/app/shared/classes/pagination';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { environment } from 'src/environments/environment';
 
@@ -12,6 +13,12 @@ export class SpeakersService {
    * Base URL of the API.
    */
   private apiBaseUrl: string;
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
   /**
    * Initializes a new instance of the QuestionService class.
@@ -26,44 +33,27 @@ export class SpeakersService {
    * @returns nothing ?
    */
   upsertSpeaker(speaker: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-
     return this.http.post(
-      this.apiBaseUrl + '/api/speakers',
+      this.apiBaseUrl + '/speakers',
       speaker,
-      httpOptions
+      this.httpOptions
     );
   }
 
   deleteSpeaker(speaker: Speaker) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-
     return this.http.delete(
-      this.apiBaseUrl + '/api/speakers/' + speaker.id,
-      httpOptions
+      this.apiBaseUrl + '/speakers?id=' + speaker.id,
+      this.httpOptions
     );
   }
   /**
    * Request the API to get a list of a type.
    * @returns An Observable containing an array.
    */
-  getSpeakers(): Observable<Speaker[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http.get<Array<Speaker>>(
-      this.apiBaseUrl + '/api/speakers',
-      httpOptions
+  getSpeakers(): Observable<Pagination[]> {
+    return this.http.get<Array<Pagination>>(
+      this.apiBaseUrl + '/speakers',
+      this.httpOptions
     );
   }
 }

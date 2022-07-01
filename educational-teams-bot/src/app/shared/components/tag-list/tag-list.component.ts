@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Tag } from '../../classes/tag';
 
 @Component({
@@ -9,7 +9,15 @@ import { Tag } from '../../classes/tag';
 })
 export class TagListComponent {
   tagList: Tag[];
-  constructor(@Inject(MAT_DIALOG_DATA) data: any) {
+
+  constructor(
+    private dialogRef: MatDialogRef<TagListComponent>,
+    @Inject(MAT_DIALOG_DATA) data: any
+  ) {
     this.tagList = data['tagList'];
+  }
+
+  closeModal() {
+    this.dialogRef.close();
   }
 }

@@ -31,8 +31,6 @@ export class TagsService {
    * @returns updated tag
    */
   upsertVariant(variant: any) {
-    console.log(variant);
-
     return this.httpClient.put(
       this.apiBaseUrl + '/tags/EditTagVariant',
       variant,
@@ -45,8 +43,6 @@ export class TagsService {
    * @returns new tag
    */
   createTag(tag: any) {
-    console.log(tag);
-
     return this.httpClient.post(
       this.apiBaseUrl + '/tags/',
       tag,

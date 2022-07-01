@@ -1,14 +1,23 @@
 <div *ngIf="speakers != undefined">
+  <div class="tabled">
+    <table style="width: 100%; height: 100%" aria-label="auto table">
+      <th class="border-right width-table">Nom</th>
+      <th class="border-right width-table">Surnom</th>
+      <th class="border-right width-table">Liste de tag</th>
+      <th class="border-right width-table">Actif</th>
+      <th class="width-button">Actions</th>
+    </table>
+  </div>
   <div *ngFor="let speaker of speakers" class="tabled">
     <table style="width: 100%" aria-label="auto table">
       <tr>
-        <th class="border-right">
+        <th class="border-right width-table">
           <div [innerHtml]="speaker.name"></div>
         </th>
-        <th class="border-right">
+        <th class="border-right width-table">
           <div [innerHtml]="speaker.nickname"></div>
         </th>
-        <th class="border-right">
+        <th class="border-right width-table">
           <div>
             "Tags": {{ speaker.tags.length
             }}<span (click)="listModal(speaker.tags)" class="icon"
@@ -16,7 +25,7 @@
             ></span>
           </div>
         </th>
-        <th class="border-right">
+        <th class="border-right width-table">
           <div *ngIf="speaker.enabled === true">
             <i
               style="color: green"
@@ -28,7 +37,7 @@
           <div *ngIf="speaker.enabled === false">
             <i
               style="color: red"
-              class="fa-solid fa-circle-x fa-2x"
+              class="fa-solid fa-circle-xmark fa-2x"
               aria-hidden="true"
             >
             </i>
@@ -36,7 +45,10 @@
         </th>
 
         <th>
-          <table aria-label="button table" style="display: inline-flex">
+          <table
+            aria-label="button table width-button"
+            style="display: inline-flex"
+          >
             <tr>
               <th>
                 <span (click)="edit(speaker)" class="icon"
@@ -55,3 +67,12 @@
     </table>
   </div>
 </div>
+<button
+  mat-fab
+  class="button-color"
+  style="background-color: #333999; margin-left: 60%"
+  aria-label="Add Button"
+  (click)="edit()"
+>
+  <mat-icon>add_circle</mat-icon>
+</button>

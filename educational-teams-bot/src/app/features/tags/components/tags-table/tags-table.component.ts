@@ -48,7 +48,6 @@ export class TagsTableComponent implements OnInit {
         tags.push(new Tag(element.id, element.variants));
       });
       this.store.dispatch(addTags(tags));
-      console.log(tags);
     });
   }
 
