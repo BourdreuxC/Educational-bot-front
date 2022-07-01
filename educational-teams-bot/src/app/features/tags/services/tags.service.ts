@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/shared/classes/pagination';
 import { environment } from 'src/environments/environment';
@@ -64,10 +65,23 @@ export class TagsService {
    * Request the API to get a list of a type.
    * @returns An Observable containing an array.
    */
-  getTags(): Observable<Pagination> {
-    return this.httpClient.get<Pagination>(
-      this.apiBaseUrl + '/tags',
-      this.httpOptions
-    );
+  getTags(pageEvent?: PageEvent): Observable<Pagination> {
+    console.log(pageEvent);
+
+    if (pageEvent) {
+      let url =
+        this.apiBaseUrl +
+        '/tags?PageSize=' +
+        pageEvent.pageSize +
+        '&PageNumber=' +
+        (pageEvent.pageIndex + 1);
+
+      return this.httpClient.get<Pagination>(url, this.httpOptions);
+    } else {
+      return this.httpClient.get<Pagination>(
+        this.apiBaseUrl + '/tags',
+        this.httpOptions
+      );
+    }
   }
 }
