@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+      - name: dist make
+        run: npm run ng build
+        
       - uses: actions/checkout@v2
         with:
           submodules: true
