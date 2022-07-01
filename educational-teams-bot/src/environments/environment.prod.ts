@@ -3,7 +3,7 @@ import { MsalGuard, MsalInterceptor } from '@azure/msal-angular';
 
 export const environment = {
   production: true,
-  apiEndpoint: '',
+  apiEndpoint: 'https://qbot-front-dev.azurewebsites.net/api',
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
