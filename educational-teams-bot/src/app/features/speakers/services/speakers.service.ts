@@ -51,25 +51,25 @@ export class SpeakersService {
    * Request the API to get a list of a type.
    * @returns An Observable containing an array.
    */
-  getSpeakers(pageEvent?: PageEvent): Observable<Pagination> {
-    if (pageEvent != undefined) {
-      if (pageEvent.pageSize != undefined) {
-        let url =
+  getSpeakers(pageEventSpeaker?: PageEvent): Observable<Pagination> {
+    if (pageEventSpeaker != undefined) {
+      if (pageEventSpeaker.pageSize != undefined) {
+        let urlSpeaker =
           this.apiBaseUrl +
           '/speakers?PageSize=' +
-          pageEvent.pageSize +
+          pageEventSpeaker.pageSize +
           '&PageNumber=' +
-          (pageEvent.pageIndex + 1);
+          (pageEventSpeaker.pageIndex + 1);
 
-        return this.httpClient.get<Pagination>(url, this.httpOptions);
+        return this.httpClient.get<Pagination>(urlSpeaker, this.httpOptions);
       } else {
-        let url =
+        let urlSpeaker =
           this.apiBaseUrl +
           '/speakers?' +
           '&PageNumber=' +
-          (pageEvent.pageIndex + 1);
+          (pageEventSpeaker.pageIndex + 1);
 
-        return this.httpClient.get<Pagination>(url, this.httpOptions);
+        return this.httpClient.get<Pagination>(urlSpeaker, this.httpOptions);
       }
     } else {
       return this.httpClient.get<Pagination>(
