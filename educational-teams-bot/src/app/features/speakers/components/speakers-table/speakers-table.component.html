@@ -8,65 +8,78 @@
       <th class="width-button">Actions</th>
     </table>
   </div>
-  <div *ngFor="let speaker of speakers" class="tabled">
-    <table style="width: 100%" aria-label="auto table">
-      <tr>
-        <th class="border-right width-table">
-          <div [innerHtml]="speaker.name"></div>
-        </th>
-        <th class="border-right width-table">
-          <div [innerHtml]="speaker.nickname"></div>
-        </th>
-        <th class="border-right width-table">
-          <div>
-            "Tags": {{ speaker.tags.length
-            }}<span (click)="listModal(speaker.tags)" class="icon"
-              ><em class="fa-solid fa-list"></em
-            ></span>
-          </div>
-        </th>
-        <th class="border-right width-table">
-          <div *ngIf="speaker.enabled === true">
-            <i
-              style="color: green"
-              class="fa-solid fa-circle-check fa-2x"
-              aria-hidden="true"
-            >
-            </i>
-          </div>
-          <div *ngIf="speaker.enabled === false">
-            <i
-              style="color: red"
-              class="fa-solid fa-circle-xmark fa-2x"
-              aria-hidden="true"
-            >
-            </i>
-          </div>
-        </th>
+  <div class="table-top" *ngIf="speakers != undefined">
+    <cdk-virtual-scroll-viewport class="scroll" itemSize="2">
+      <div *ngFor="let speaker of speakers" class="tabled">
+        <table style="width: 100%" aria-label="auto table">
+          <tr>
+            <th class="border-right width-table">
+              <div [innerHtml]="speaker.name"></div>
+            </th>
+            <th class="border-right width-table">
+              <div [innerHtml]="speaker.nickname"></div>
+            </th>
+            <th class="border-right width-table">
+              <div>
+                "Tags": {{ speaker.tags.length
+                }}<span (click)="listModal(speaker.tags)" class="icon"
+                  ><em class="fa-solid fa-list"></em
+                ></span>
+              </div>
+            </th>
+            <th class="border-right width-table">
+              <div *ngIf="speaker.enabled === true">
+                <i
+                  style="color: green"
+                  class="fa-solid fa-circle-check fa-2x"
+                  aria-hidden="true"
+                >
+                </i>
+              </div>
+              <div *ngIf="speaker.enabled === false">
+                <i
+                  style="color: red"
+                  class="fa-solid fa-circle-xmark fa-2x"
+                  aria-hidden="true"
+                >
+                </i>
+              </div>
+            </th>
 
-        <th>
-          <table
-            aria-label="button table width-button"
-            style="display: inline-flex"
-          >
-            <tr>
-              <th>
-                <span (click)="edit(speaker)" class="icon"
-                  ><em class="fa-solid fa-pen-to-square"></em
-                ></span>
-              </th>
-              <th>
-                <span (click)="delete(speaker)" class="icon"
-                  ><em class="fa-solid fa-trash"></em
-                ></span>
-              </th>
-            </tr>
-          </table>
-        </th>
-      </tr>
-    </table>
+            <th>
+              <table
+                aria-label="button table width-button"
+                style="display: inline-flex"
+              >
+                <tr>
+                  <th>
+                    <span (click)="edit(speaker)" class="icon"
+                      ><em class="fa-solid fa-pen-to-square"></em
+                    ></span>
+                  </th>
+                  <th>
+                    <span (click)="delete(speaker)" class="icon"
+                      ><em class="fa-solid fa-trash"></em
+                    ></span>
+                  </th>
+                </tr>
+              </table>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </cdk-virtual-scroll-viewport>
   </div>
 </div>
+<mat-paginator
+  class="paginator"
+  [length]="totalItem"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = getSpeakers($event)"
+  aria-label="Select page"
+>
+</mat-paginator>
 <button
   mat-fab
   class="button-color"

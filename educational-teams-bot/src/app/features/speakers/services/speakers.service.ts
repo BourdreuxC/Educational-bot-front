@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/shared/classes/pagination';
 import { Speaker } from 'src/app/shared/classes/speaker';
@@ -50,7 +51,7 @@ export class SpeakersService {
    * Request the API to get a list of a type.
    * @returns An Observable containing an array.
    */
-  getSpeakers(): Observable<Pagination[]> {
+  getSpeakers(pageEvent?: PageEvent): Observable<Pagination[]> {
     return this.http.get<Array<Pagination>>(
       this.apiBaseUrl + '/speakers',
       this.httpOptions
