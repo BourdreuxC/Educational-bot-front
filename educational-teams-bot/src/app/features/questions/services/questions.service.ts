@@ -32,25 +32,25 @@ export class QuestionsService {
    * Request the API to get the list of questions.
    * @returns An Observable containing an array of questions.
    */
-  getQuestions(pageEvent?: PageEvent): Observable<Pagination> {
-    if (pageEvent != undefined) {
-      if (pageEvent.pageSize != undefined) {
+  getQuestions(pageEventQuestion?: PageEvent): Observable<Pagination> {
+    if (pageEventQuestion != undefined) {
+      if (pageEventQuestion.pageSize != undefined) {
         let url =
           this.apiBaseUrl +
           '/questions?PageSize=' +
-          pageEvent.pageSize +
+          pageEventQuestion.pageSize +
           '&PageNumber=' +
-          (pageEvent.pageIndex + 1);
+          (pageEventQuestion.pageIndex + 1);
 
         return this.httpClient.get<Pagination>(url, this.httpOptions);
       } else {
-        let url =
+        let urlQuestion =
           this.apiBaseUrl +
           '/questions?' +
           '&PageNumber=' +
-          (pageEvent.pageIndex + 1);
+          (pageEventQuestion.pageIndex + 1);
 
-        return this.httpClient.get<Pagination>(url, this.httpOptions);
+        return this.httpClient.get<Pagination>(urlQuestion, this.httpOptions);
       }
     } else {
       return this.httpClient.get<Pagination>(
