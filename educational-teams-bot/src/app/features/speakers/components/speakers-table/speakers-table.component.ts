@@ -39,7 +39,8 @@ export class SpeakersTableComponent implements OnInit {
   ngOnInit() {
     {
       let pageEvent: PageEvent = new PageEvent();
-      (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+      pageEvent.pageIndex = 0;
+      pageEvent.pageSize = this.pageSize;
 
       this.getSpeakers(pageEvent);
     }

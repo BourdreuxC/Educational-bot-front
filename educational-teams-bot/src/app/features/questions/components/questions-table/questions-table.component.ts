@@ -45,7 +45,8 @@ export class QuestionsTableComponent implements OnInit {
    */
   ngOnInit(): void {
     let pageEvent: PageEvent = new PageEvent();
-    (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+    pageEvent.pageIndex = 0;
+    pageEvent.pageSize = this.pageSize;
 
     this.getQuestions(pageEvent);
   }

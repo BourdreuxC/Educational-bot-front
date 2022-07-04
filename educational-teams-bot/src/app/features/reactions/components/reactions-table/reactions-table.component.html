@@ -1,5 +1,5 @@
 <div class="tabled">
-  <table style="width: 100%" aria-label="auto table">
+  <table style="width: 100%" aria-label="Reactions Header">
     <th class="border-right width-table">
       <div>Réactions</div>
     </th>
@@ -12,7 +12,7 @@
 <div *ngIf="reactions != undefined">
   <cdk-virtual-scroll-viewport class="scroll" itemSize="2">
     <div *ngFor="let reaction of reactions" class="tabled">
-      <table style="width: 100%" aria-label="auto table">
+      <table style="width: 100%" aria-label="Reactions Table">
         <tr>
           <th class="border-right width-table">
             <div [innerHtml]="reaction.reaction"></div>

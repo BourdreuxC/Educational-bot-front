@@ -72,9 +72,6 @@ describe('QuestionsComponent', async () => {
     );
   });
 
-  store = TestBed.inject(MockStore);
-  service = TestBed.inject(MockQuestionsService);
-
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionsComponent);
     component = new QuestionsComponent();

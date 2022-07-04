@@ -1,5 +1,5 @@
 <div class="tabled">
-  <table style="width: 100%; height: 100%" aria-label="auto table">
+  <table style="width: 100%; height: 100%" aria-label="Questions Header">
     <th class="border-right width-table">Questions</th>
     <th class="border-right width-table">Tags</th>
     <th class="width-table">Best Answer</th>
@@ -8,7 +8,7 @@
 <div *ngIf="questions != undefined">
   <cdk-virtual-scroll-viewport class="scroll" itemSize="2">
     <div *ngFor="let question of questions" class="tabled">
-      <table style="width: 100%; height: 100%" aria-label="auto table">
+      <table style="width: 100%; height: 100%" aria-label="Questions Table">
         <tr>
           <th class="border-right width-table">
             <div [innerHtml]="question.content"></div>
