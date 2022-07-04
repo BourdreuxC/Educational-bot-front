@@ -1,27 +1,12 @@
 @import '../../../../../variables.scss';
 
-.border-right {
-    border-right: 0.1em solid $third-color;
-    height: 100%;
-}
-.tabled{
-    background-color: white; border-radius: 1em; height: 100%; color: $third-color; text-align: center; margin-bottom: 10px;
-}
-.icon {
-    position: relative;
-    display: block;
-    min-width: 2em;
-    height: 2em;
-    line-height: 2.5em;
-    text-align: center;
-
-    em {
-        font-size: 1.5em;
-    }
-}
 .width-table {
     width: 20%;
 }
 .width-button {
     width: 20%;
 }
+.button-add {
+    background-color: #333999;
+    margin-left: 20px;
+  }

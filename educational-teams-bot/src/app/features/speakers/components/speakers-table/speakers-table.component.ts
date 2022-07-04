@@ -18,7 +18,7 @@ import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.comp
 })
 export class SpeakersTableComponent implements OnInit {
   // MatPaginator Inputs
-  pageSize = 5;
+  pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   totalItem!: number;
   pageEvent!: PageEvent;
