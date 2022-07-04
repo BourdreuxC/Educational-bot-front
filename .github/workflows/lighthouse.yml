@@ -16,7 +16,7 @@ jobs:
       uses: foo-software/lighthouse-check-action@master
       with:
         outputDirectory: /tmp/artifacts
-        urls: 'https://qbot-front-dev.azurewebsites.net'
+        urls: 'https://qbot-api-dev.azurewebsites.net'
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
