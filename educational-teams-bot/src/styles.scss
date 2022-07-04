@@ -72,12 +72,11 @@ html {
   height: 100%;
 }
 .table-top {
-  padding-top: 10px;
+  height: 80vh;
 }
 .tabled {
   background-color: white;
   border-radius: 1em;
-  height: 100%;
   color: $third-color;
   width: 50em;
   text-align: center;
@@ -102,4 +101,13 @@ html {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+.paginator {
+  margin-bottom: 1em;
+  width: 59em;    
+  border-radius: 5em;
+
+}
+.scroll {
+  height: 80vh;
 }

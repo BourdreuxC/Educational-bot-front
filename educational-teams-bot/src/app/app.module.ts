@@ -28,6 +28,8 @@ import { ReactionsEffects } from './features/reactions/state/reactions.effects';
 import { tagsReducer } from './features/tags/state/tags.reducer';
 import { speakersReducer } from './features/speakers/state/speakers.reducer';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 const imports = [
   BrowserModule,
@@ -38,10 +40,12 @@ const imports = [
   NgbModule,
   MatDialogModule,
   MatFormFieldModule,
+  MatPaginatorModule,
   MatChipsModule,
   MatInputModule,
   MatCheckboxModule,
   MatSelectModule,
+  ScrollingModule,
   MsalModule.forRoot(
     new PublicClientApplication({
       auth: {
@@ -62,10 +66,7 @@ const imports = [
     {
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
-        [
-          `${environment.apiEndpoint}/`,
-          [`api://${environment.clientId}/access_as_user`],
-        ],
+        [`${environment.apiEndpoint}/`, [`User.Read.All`]],
         ['https://graph.microsoft.com', ['User.Read.All']],
       ]),
     }

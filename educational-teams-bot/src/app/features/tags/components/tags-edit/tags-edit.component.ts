@@ -20,7 +20,7 @@ export class TagsEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.tag = data['tag'];
-    this.newTag = new FormControl(Validators.required);
+    this.newTag = new FormControl(null, Validators.required);
   }
 
   ngOnInit(): void {

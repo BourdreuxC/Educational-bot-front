@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TagsCreateComponent } from './components/tags-create/tags-create.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,11 @@ import { MatChipsModule } from '@angular/material/chips';
     MatButtonModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatPaginatorModule,
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
+    ScrollingModule,
   ],
 })
 export class TagsModule {}

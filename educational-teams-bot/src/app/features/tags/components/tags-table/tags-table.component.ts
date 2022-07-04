@@ -9,6 +9,7 @@ import { TagsDeleteComponent } from '../tags-delete/tags-delete.component';
 import { TagsEditComponent } from '../tags-edit/tags-edit.component';
 import { selectTags } from '../../state/tags.selector';
 import { TagsCreateComponent } from '../tags-create/tags-create.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tags-table',
@@ -16,6 +17,11 @@ import { TagsCreateComponent } from '../tags-create/tags-create.component';
   styleUrls: ['./tags-table.component.scss'],
 })
 export class TagsTableComponent implements OnInit {
+  // MatPaginator Inputs
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  totalItem!: number;
+  pageEvent!: PageEvent;
   /**
    * Tags to display.
    */
@@ -34,21 +40,25 @@ export class TagsTableComponent implements OnInit {
    * Trigger actions on component initialization.
    */
   ngOnInit(): void {
-    this.getTags();
+    let pageEvent: PageEvent = new PageEvent();
+    (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+
+    this.getTags(pageEvent);
   }
 
   /**
    * Get the tags thanks to the service.
    */
-  getTags() {
-    this.service.getTags().subscribe((result: any) => {
+  getTags(pageEvent: PageEvent) {
+    this.service.getTags(pageEvent).subscribe((result: any) => {
       let tags: Tag[] = [];
-
+      this.totalItem = result.totalCount;
       result.items.forEach((element: Tag) => {
         tags.push(new Tag(element.id, element.variants));
       });
       this.store.dispatch(addTags(tags));
     });
+    return pageEvent;
   }
 
   edit(tag: Tag) {

@@ -14,6 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SpeakersDeleteComponent } from './components/speakers-delete/speakers-delete.component';
 import { SpeakersTableComponent } from './components/speakers-table/speakers-table.component';
 import { SpeakersUpsertComponent } from './components/speakers-upsert/speakers-upsert.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { SpeakersUpsertComponent } from './components/speakers-upsert/speakers-u
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
+    MatPaginatorModule,
+    ScrollingModule,
     ReactiveFormsModule,
     SharedModule,
   ],
