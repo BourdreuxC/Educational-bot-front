@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { select, Store } from '@ngrx/store';
 import { Speaker } from 'src/app/shared/classes/speaker';
 import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.component';
@@ -16,6 +17,11 @@ import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.comp
   styleUrls: ['./speakers-table.component.scss'],
 })
 export class SpeakersTableComponent implements OnInit {
+  // MatPaginator Inputs
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  totalItem!: number;
+  pageEvent!: PageEvent;
   /**
    * Speakers to display.
    */
@@ -31,7 +37,12 @@ export class SpeakersTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSpeakers();
+    {
+      let pageEvent: PageEvent = new PageEvent();
+      (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+
+      this.getSpeakers(pageEvent);
+    }
   }
 
   /**
@@ -46,9 +57,10 @@ export class SpeakersTableComponent implements OnInit {
   /**
    * Get the speakers thanks to the service.
    */
-  getSpeakers() {
-    this.service.getSpeakers().subscribe((result: any) => {
+  getSpeakers(pageEvent: PageEvent) {
+    this.service.getSpeakers(pageEvent).subscribe((result: any) => {
       let speakers: Speaker[] = [];
+      this.totalItem = result.totalCount;
       result.items.forEach((element: Speaker) => {
         speakers.push(
           new Speaker(
@@ -62,6 +74,7 @@ export class SpeakersTableComponent implements OnInit {
       });
       this.store.dispatch(addSpeakers(speakers));
     });
+    return pageEvent;
   }
   edit(speaker?: Speaker) {
     const dialogRef = this.dialog.open(SpeakersUpsertComponent, {

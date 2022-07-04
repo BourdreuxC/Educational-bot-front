@@ -7,6 +7,7 @@ import { addReactions } from '../../state/reactions.actions';
 import { ReactionsState } from '../../state/reactions.reducer';
 import { ReactionsEditComponent } from '../reactions-edit/reactions-edit.component';
 import { selectReactions } from '../../state/reactions.selector';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-reactions-table',
@@ -14,6 +15,11 @@ import { selectReactions } from '../../state/reactions.selector';
   styleUrls: ['./reactions-table.component.scss'],
 })
 export class ReactionsTableComponent implements OnInit {
+  // MatPaginator Inputs
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  totalItem!: number;
+  pageEvent!: PageEvent;
   /**
    * Reactions to display.
    */
@@ -31,16 +37,19 @@ export class ReactionsTableComponent implements OnInit {
    * Trigger actions on component initialization.
    */
   ngOnInit(): void {
-    this.getReactions();
+    let pageEvent: PageEvent = new PageEvent();
+    (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+
+    this.getReactions(pageEvent);
   }
 
   /**
    * Get the reactions thanks to the service.
    */
-  getReactions() {
-    this.service.getReactions().subscribe((result: any) => {
+  getReactions(pageEvent: PageEvent) {
+    this.service.getReactions(pageEvent).subscribe((result: any) => {
       let reactions: Reaction[] = [];
-
+      this.totalItem = result.totalCount;
       result.items.forEach((element: Reaction) => {
         reactions.push(
           new Reaction(element.id, element.reaction, element.value)
@@ -49,6 +58,7 @@ export class ReactionsTableComponent implements OnInit {
 
       this.store.dispatch(addReactions(reactions));
     });
+    return pageEvent;
   }
 
   edit(reaction: Reaction) {

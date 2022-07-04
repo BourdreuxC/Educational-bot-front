@@ -66,17 +66,25 @@ export class TagsService {
    * @returns An Observable containing an array.
    */
   getTags(pageEvent?: PageEvent): Observable<Pagination> {
-    console.log(pageEvent);
+    if (pageEvent != undefined) {
+      if (pageEvent.pageSize != undefined) {
+        let url =
+          this.apiBaseUrl +
+          '/tags?PageSize=' +
+          pageEvent.pageSize +
+          '&PageNumber=' +
+          (pageEvent.pageIndex + 1);
 
-    if (pageEvent) {
-      let url =
-        this.apiBaseUrl +
-        '/tags?PageSize=' +
-        pageEvent.pageSize +
-        '&PageNumber=' +
-        (pageEvent.pageIndex + 1);
+        return this.httpClient.get<Pagination>(url, this.httpOptions);
+      } else {
+        let url =
+          this.apiBaseUrl +
+          '/tags?' +
+          '&PageNumber=' +
+          (pageEvent.pageIndex + 1);
 
-      return this.httpClient.get<Pagination>(url, this.httpOptions);
+        return this.httpClient.get<Pagination>(url, this.httpOptions);
+      }
     } else {
       return this.httpClient.get<Pagination>(
         this.apiBaseUrl + '/tags',

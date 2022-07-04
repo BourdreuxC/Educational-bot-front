@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { TagsService } from 'src/app/features/tags/services/tags.service';
 import { UsersService } from 'src/app/features/users/services/users.service';
@@ -87,7 +88,10 @@ export class SpeakersUpsertComponent implements OnInit {
   }
 
   getTags(): Observable<any> {
-    return this.tagsService.getTags();
+    let pageEvent: PageEvent = new PageEvent();
+    (pageEvent.pageIndex = 0), pageEvent;
+
+    return this.tagsService.getTags(pageEvent);
   }
 
   getUsers(): Observable<any> {

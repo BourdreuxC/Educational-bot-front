@@ -21,10 +21,10 @@ export class TagsTableComponent implements OnInit {
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   totalItem!: number;
+  pageEvent!: PageEvent;
   /**
    * Tags to display.
    */
-  pageEvent!: PageEvent;
   tags: Tag[] = [];
   constructor(
     private store: Store<TagsState>,
@@ -43,7 +43,7 @@ export class TagsTableComponent implements OnInit {
     let pageEvent: PageEvent = new PageEvent();
     (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
 
-    this.getTags(pageEvent!);
+    this.getTags(pageEvent);
   }
 
   /**

@@ -12,14 +12,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactionsComponent } from './components/reactions/reactions.component';
 import { ReactionsTableComponent } from './components/reactions-table/reactions-table.component';
 import { ReactionsEditComponent } from './components/reactions-edit/reactions-edit.component';
-
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     ReactionsComponent,
     ReactionsTableComponent,
-    ReactionsEditComponent
+    ReactionsEditComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +31,9 @@ import { ReactionsEditComponent } from './components/reactions-edit/reactions-ed
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
-    SharedModule
-  ]
+    MatPaginatorModule,
+    ScrollingModule,
+    SharedModule,
+  ],
 })
-export class ReactionsModule { }
+export class ReactionsModule {}

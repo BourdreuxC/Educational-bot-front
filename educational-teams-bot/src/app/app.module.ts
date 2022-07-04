@@ -66,10 +66,7 @@ const imports = [
     {
       interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
       protectedResourceMap: new Map([
-        [
-          `${environment.apiEndpoint}/`,
-          [`api://${environment.clientId}/access_as_user`],
-        ],
+        [`${environment.apiEndpoint}/`, [`User.Read.All`]],
         ['https://graph.microsoft.com', ['User.Read.All']],
       ]),
     }
