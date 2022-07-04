@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { Observable } from 'rxjs';
+import { Answer } from 'src/app/shared/classes/answer';
 import { Pagination } from 'src/app/shared/classes/pagination';
 import { Question } from 'src/app/shared/classes/question';
 import { QuestionsService } from '../../services/questions.service';
@@ -16,8 +17,20 @@ import { QuestionsComponent } from './questions.component';
 class MockQuestionsService extends QuestionsService {
   pagination: Pagination;
   questions: Question[] = [
-    new Question('1', 'This is a question destinated to the bot.', [], []),
-    new Question('2', 'This is another question.', [], []),
+    new Question(
+      '1',
+      'This is a question destinated to the bot.',
+      [],
+      [],
+      new Answer('2', 'NON', '1', [], false)
+    ),
+    new Question(
+      '2',
+      'This is another question.',
+      [],
+      [],
+      new Answer('1', 'Oui', '1', [], true)
+    ),
   ];
 
   constructor(httpClient: HttpClient) {
@@ -54,20 +67,18 @@ describe('QuestionsComponent', async () => {
       '1',
       'This is a question destinated to the bot.',
       [],
-      []
+      [],
+      new Answer('1', 'Oui', '1', [], true)
     );
   });
 
-  store = TestBed.inject(MockStore);
-  service = TestBed.inject(MockQuestionsService);
-
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionsComponent);
-    component = new QuestionsComponent(service, store);
+    component = new QuestionsComponent();
     fixture.detectChanges();
   });
 
   it('should have questions', () => {
-    expect(component.questions).toContain(expected);
+    expect(component).toContain(expected);
   });
 });

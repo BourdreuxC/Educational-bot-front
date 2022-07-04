@@ -16,7 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ReactionsTableComponent implements OnInit {
   // MatPaginator Inputs
-  pageSize = 5;
+  pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   totalItem!: number;
   pageEvent!: PageEvent;
@@ -38,7 +38,8 @@ export class ReactionsTableComponent implements OnInit {
    */
   ngOnInit(): void {
     let pageEvent: PageEvent = new PageEvent();
-    (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+    pageEvent.pageIndex = 0;
+    pageEvent.pageSize = this.pageSize;
 
     this.getReactions(pageEvent);
   }

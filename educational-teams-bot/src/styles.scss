@@ -67,12 +67,14 @@ html {
   height: 100%;
 }
 
+.button-add {
+  background-color: #333999;
+  margin-left: 20px;
+}
+
 .border-right {
   border-right: 0.1em solid $third-color;
   height: 100%;
-}
-.table-top {
-  height: 80vh;
 }
 .tabled {
   background-color: white;
@@ -109,5 +111,5 @@ html {
 
 }
 .scroll {
-  height: 80vh;
+  height: 62.5vh;
 }

@@ -1,14 +1,14 @@
 <div class="tabled">
-  <table style="width: 100%" aria-label="auto table">
+  <table style="width: 100%" aria-label="Tags Header">
     <th class="border-right width-table">Tag</th>
     <th class="border-right width-table">Nombre de Variants</th>
     <th class="width-button">Actions</th>
   </table>
 </div>
-<div class="table-top" *ngIf="tags != undefined">
+<div *ngIf="tags != undefined">
   <cdk-virtual-scroll-viewport class="scroll" itemSize="2">
     <div *ngFor="let tag of tags" class="tabled">
-      <table style="width: 100%" aria-label="auto table">
+      <table style="width: 100%" aria-label="Tags Table">
         <tr>
           <th class="border-right width-table">
             <div>
@@ -41,21 +41,26 @@
     </div>
   </cdk-virtual-scroll-viewport>
 </div>
-<mat-paginator
-  class="paginator"
-  [length]="totalItem"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  (page)="pageEvent = getTags($event)"
-  aria-label="Select page"
->
-</mat-paginator>
-<button
-  mat-fab
-  class="button-color"
-  style="background-color: #333999; margin-left: 60%"
-  aria-label="Add Button"
-  (click)="create()"
->
-  <mat-icon>add_circle</mat-icon>
-</button>
+<table aria-label="Paginator and Create Button">
+  <th>
+    <mat-paginator
+      class="paginator"
+      [length]="totalItem"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = getTags($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </th>
+  <th>
+    <button
+      mat-fab
+      class="button-color button-add"
+      aria-label="Add Button"
+      (click)="create()"
+    >
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </th>
+</table>
