@@ -50,17 +50,12 @@ export class SpeakersUpsertComponent implements OnInit {
         'nickname',
         this.fb.control(this.speaker.nickname, Validators.required)
       );
-      this.myForm.addControl(
-        'enabled',
-        this.fb.control(this.speaker.enabled, Validators.required)
-      );
+      this.myForm.addControl('enabled', this.fb.control(this.speaker.enabled));
       this.speaker.tags.forEach((value) => {
         this.idTags.push(value.id);
       });
     } else {
       this.getUsers().subscribe((userList) => {
-        console.log('test');
-
         this.idOptions = userList;
       });
       this.myForm.addControl('id', this.fb.control(null, Validators.required));
@@ -72,10 +67,7 @@ export class SpeakersUpsertComponent implements OnInit {
         'nickname',
         this.fb.control(null, Validators.required)
       );
-      this.myForm.addControl(
-        'enabled',
-        this.fb.control(null, Validators.required)
-      );
+      this.myForm.addControl('enabled', this.fb.control(null));
     }
     this.myForm.addControl(
       'tags',

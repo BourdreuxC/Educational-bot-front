@@ -18,7 +18,7 @@ import { SpeakersUpsertComponent } from '../speakers-upsert/speakers-upsert.comp
 })
 export class SpeakersTableComponent implements OnInit {
   // MatPaginator Inputs
-  pageSize = 5;
+  pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   totalItem!: number;
   pageEvent!: PageEvent;
@@ -39,7 +39,8 @@ export class SpeakersTableComponent implements OnInit {
   ngOnInit() {
     {
       let pageEvent: PageEvent = new PageEvent();
-      (pageEvent.pageIndex = 0), (pageEvent.pageSize = this.pageSize);
+      pageEvent.pageIndex = 0;
+      pageEvent.pageSize = this.pageSize;
 
       this.getSpeakers(pageEvent);
     }

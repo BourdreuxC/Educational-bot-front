@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { select, Store } from '@ngrx/store';
 import { Pagination } from 'src/app/shared/classes/pagination';
 import { Question } from 'src/app/shared/classes/question';
@@ -15,6 +16,11 @@ import { selectQuestions } from '../../state/questions.selector';
   styleUrls: ['./questions-table.component.scss'],
 })
 export class QuestionsTableComponent implements OnInit {
+  // MatPaginator Inputs
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  totalItem!: number;
+  pageEvent!: PageEvent;
   /**
    * Questions to display.
    */
@@ -38,7 +44,11 @@ export class QuestionsTableComponent implements OnInit {
    * Trigger actions on component initialization.
    */
   ngOnInit(): void {
-    this.getQuestions();
+    let pageEvent: PageEvent = new PageEvent();
+    pageEvent.pageIndex = 0;
+    pageEvent.pageSize = this.pageSize;
+
+    this.getQuestions(pageEvent);
   }
 
   /**
@@ -53,8 +63,9 @@ export class QuestionsTableComponent implements OnInit {
   /**
    * Get the questions thanks to the service.
    */
-  getQuestions() {
-    this.service.getQuestions().subscribe((result: any) => {
+  getQuestions(pageEvent: PageEvent) {
+    this.service.getQuestions(pageEvent).subscribe((result: any) => {
+      this.totalItem = result.totalCount;
       let pagination = new Pagination(
         result.items,
         result.pageIndex,
@@ -80,5 +91,6 @@ export class QuestionsTableComponent implements OnInit {
 
       this.store.dispatch(addQuestions(questions));
     });
+    return pageEvent;
   }
 }

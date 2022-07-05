@@ -62,8 +62,8 @@ export class TagsService {
     );
   }
   /**
-   * Request the API to get a list of a type.
-   * @returns An Observable containing an array.
+   * Request the API to get a list of Tags.
+   * @returns An Observable containing an array of tags.
    */
   getTags(pageEvent?: PageEvent): Observable<Pagination> {
     if (pageEvent != undefined) {

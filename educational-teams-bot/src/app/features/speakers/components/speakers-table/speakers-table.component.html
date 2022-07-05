@@ -1,6 +1,6 @@
 <div *ngIf="speakers != undefined">
   <div class="tabled">
-    <table style="width: 100%; height: 100%" aria-label="auto table">
+    <table style="width: 100%; height: 100%" aria-label="Speaker Header">
       <th class="border-right width-table">Nom</th>
       <th class="border-right width-table">Surnom</th>
       <th class="border-right width-table">Liste de tag</th>
@@ -8,10 +8,10 @@
       <th class="width-button">Actions</th>
     </table>
   </div>
-  <div class="table-top" *ngIf="speakers != undefined">
+  <div *ngIf="speakers != undefined">
     <cdk-virtual-scroll-viewport class="scroll" itemSize="2">
       <div *ngFor="let speaker of speakers" class="tabled">
-        <table style="width: 100%" aria-label="auto table">
+        <table style="width: 100%" aria-label="Speaker Table">
           <tr>
             <th class="border-right width-table">
               <div [innerHtml]="speaker.name"></div>
@@ -71,21 +71,26 @@
     </cdk-virtual-scroll-viewport>
   </div>
 </div>
-<mat-paginator
-  class="paginator"
-  [length]="totalItem"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  (page)="pageEvent = getSpeakers($event)"
-  aria-label="Select page"
->
-</mat-paginator>
-<button
-  mat-fab
-  class="button-color"
-  style="background-color: #333999; margin-left: 60%"
-  aria-label="Add Button"
-  (click)="edit()"
->
-  <mat-icon>add_circle</mat-icon>
-</button>
+<table aria-label="Paginator and create button">
+  <th>
+    <mat-paginator
+      class="paginator"
+      [length]="totalItem"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = getSpeakers($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </th>
+  <th>
+    <button
+      mat-fab
+      class="button-color button-add"
+      aria-label="Add Button"
+      (click)="edit()"
+    >
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </th>
+</table>
