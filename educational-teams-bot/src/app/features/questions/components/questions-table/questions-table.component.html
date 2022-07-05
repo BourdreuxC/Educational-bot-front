@@ -24,9 +24,9 @@
           <th class="width-table">
             <div>
               {{
-                question.bestAnswer == undefined
-                  ? "Pas de réponse"
-                  : question.bestAnswer.content
+                question.bestAnswer
+                  ? question.bestAnswer.content
+                  : "Pas de réponse"
               }}
             </div>
           </th>
